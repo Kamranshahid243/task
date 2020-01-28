@@ -1,0 +1,104 @@
+body{ font-family: 'Open Sans', sans-serif; }
+
+.w-100{ width:100%; }
+
+.thumb-round-34x34{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+}
+
+.thumb-square-40x40{
+    width:40px;
+    height:40px;
+}
+
+.thumb-square-50x50{
+    width:50px;
+    height:50px;
+}
+
+.thumb-square-100x100{
+    width:100px;
+    height:100px;
+}
+
+.login-body,
+.login-box-body, .register-box-body,
+.login-page, .register-page{
+   background-color: #ecf0f5;
+}
+.login-page .auth-box-footer{
+    text-align:center;
+}
+
+.swal2-container{
+    top:60px !important;
+    position:relative;
+    
+}
+.swal2-container .swal2-popup{ padding:10px !important; }
+.swal2-container *{
+    color:#fff !important;
+}
+.swal2-container #swal2-title,
+.swal2-container #swal2-content{
+    font-size:2em;
+}
+
+.d-none{ display:none; }
+.d-block{ display:block; }
+
+.font-weight-bold{ font-weight: bold;}
+.font-weight-bolder{ font-weight: bolder;}
+.text-italic{ font-style: italic !important; }
+
+.text-center{ text-align:center; }
+
+.select2{ 
+    width:100% !important; 
+    height:34px;
+}
+
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple {
+    border-radius: 0px;
+    height:34px;
+    border:solid 1px #d2d6de;
+}
+
+.select2-container--open .select2-dropdown--below {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* thumb datatables */
+.auc-table-with-thumbs h2{
+    font-size:1em;
+}
+.auc-table-with-thumbs .table-avatar .avatar{ margin-right:10px; }
+.custom-table {
+    
+}
+#data-table td,
+.custom-table td{
+    vertical-align:middle !important;
+}
+
+.timeline-inverse>li>.timeline-item {
+    background: #f0f0f040;
+    border: 1px solid #dddddd5e;
+   
+}
+
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #3c8dbc;
+    border: 1px solid #3c8dbc;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove { color: rgb(255, 255, 255); }
+   
+.auc-thumb-wrapper{
+    margin-bottom:30px;
+}
