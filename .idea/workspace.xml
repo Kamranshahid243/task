@@ -7,11 +7,14 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -132,7 +135,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Http/Controllers/Admin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
@@ -174,6 +177,7 @@
       <option name="presentableId" value="Default" />
       <updated>1580151422344</updated>
       <workItem from="1580151423982" duration="14932000" />
+      <workItem from="1580193393804" duration="2468000" />
     </task>
     <servers />
   </component>
@@ -189,10 +193,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="289" y="38" width="787" height="652" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1580156357360" />
-    <state x="255" y="159" key="run.anything.popup" timestamp="1580158250790">
+    <state x="255" y="159" key="run.anything.popup" timestamp="1580195118909">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="255" y="159" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1580158250790" />
+    <state x="255" y="159" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1580195118909" />
     <state x="262" y="0" width="840" height="726" key="search.everywhere.popup" timestamp="1580160531663">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
