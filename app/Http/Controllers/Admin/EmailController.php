@@ -18,4 +18,14 @@ class EmailController extends Controller
         }
         return abort(404,"Error while creating template.");
     }
+
+    public function loadEmailTemplates(Request $request)
+    {
+        return EmailTemplate::findRequested();
+    }
+
+    public function emailUpdateForm(Request $request)
+    {
+        return $template=EmailTemplate::find($request->id);
+    }
 }

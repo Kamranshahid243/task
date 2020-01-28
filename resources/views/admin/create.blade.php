@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $title) 
+@section('title', $title)
 
 
 @section('style-sheets')
@@ -23,7 +23,7 @@
     <!-- Main content -->
     <section class="content">
 
-   
+
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Create Account</h3>
@@ -32,7 +32,7 @@
             <!-- form start -->
             <form class="form-verticle form" method="post" action="{{ url('/admin/users/management') }}">
                 @csrf
-                
+
                 <div class="box-body">
                    <div class="row">
                        <div class="col-md-6">
@@ -56,18 +56,18 @@
                                 <label>Mobile</label>
                                 <input type="text" class="form-control"  name="mobile" placeholder="Mobile number">
                             </div>
-                            
+
                        </div>
                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="phone-number">Role<span class="text-red">*</span></label>
                                 <select class="form-control" name="role_id">
-                                    
+
                                     @if( $roles->count() )
                                         @foreach( $roles as $role )
-                                           
+
                                             <option value="{{ $role->id }}"> {{ $role->name }} </option>
-                                           
+
                                         @endforeach
                                     @endif
                                 </select>
@@ -79,7 +79,7 @@
                                     <option value="">Select gender </option>
                                     @if( $genders->count() )
                                         @foreach( $genders as $gender )
-                                            
+
                                             <option value="{{ $gender->id }}" > {{ $gender->name }} </option>
                                         @endforeach
                                     @endif
@@ -99,20 +99,20 @@
                             <div class="form-group d-none states-wrapper">
                                 <label for="">State</label>
                                 <select  class="form-control  select2 state-list">
-                                    
+
                                     <option value="">Select State</option>
-                                   
+
                                 </select>
                             </div>
                             <div class="form-group d-none cities-wrapper">
                                 <label for="">City</label>
                                 <select  class="form-control  select2 city-list">
-                                   
+
                                     <option value="">Select City</option>
-                                  
+
                                 </select>
                             </div>
-                            
+
 
                             <input type="hidden" name="country_id" class="country-id">
                             <input type="hidden" name="state_id" class="state-id">
@@ -122,13 +122,13 @@
                 </div>
                 <!-- /.box-body -->
                 <div class="box-footer">
-                    
+
                     <button type="submit" class="btn btn-primary pull-right form-btn"><i class="fa fa-check"></i> Create</button>
                 </div>
                 <!-- /.box-footer -->
             </form>
-        </div>            
-  
+        </div>
+
 
     </section>
     <!-- /.content -->

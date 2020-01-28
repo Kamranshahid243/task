@@ -88,7 +88,7 @@
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
-                  
+
                   @if( Auth::user()->unreadNotifications->count() )
                     @foreach( Auth::user()->notifications as $notification)
                     <li>
@@ -98,11 +98,10 @@
                     </li>
                     @endforeach
                   @endif
-              
+
                 </ul>
               </li>
               <li class="footer"><a href="{{ url('/admin/notifications') }}">View all</a></li>
             </ul>
           </li>
           <!-- Tasks: style can be found in dropdown.less -->
-       

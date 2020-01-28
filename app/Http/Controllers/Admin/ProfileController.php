@@ -21,6 +21,10 @@ class ProfileController extends Controller
     {
         return view('admin.test.index');
     }
+    public function ad()
+    {
+        return view('admin.ad.index');
+    }
 
     public function index(){
 

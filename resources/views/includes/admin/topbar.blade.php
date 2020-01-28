@@ -18,7 +18,7 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <!-- Messages: style can be found in dropdown.less-->
-               
+
                 @include('includes.admin.notifications')
 
                 <!-- User Account: style can be found in dropdown.less -->
@@ -28,7 +28,7 @@
                         <span class="hidden-xs">{{ Auth::user()->first_name.' '.Auth::user()->last_name }}</span>
                     </a>
                     <ul class="dropdown-menu">
-                       
+
                         <!-- User image -->
                         <li class="user-header">
                             <img src="{{ asset(Auth::user()->avatar) }}" class="img-circle" alt="Avatar">
@@ -50,7 +50,7 @@
                                 </form>
                             </div>
                         </li>
-                       
+
                     </ul>
                     <li>
                         <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>

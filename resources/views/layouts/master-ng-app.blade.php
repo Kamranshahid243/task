@@ -3,7 +3,6 @@
         'use strict';
         angular.module('myApp', []).controller('LayoutController', LayoutController);
         function LayoutController() {
-
         }
 
     })();

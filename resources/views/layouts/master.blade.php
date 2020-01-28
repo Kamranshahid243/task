@@ -16,6 +16,13 @@
     <link rel="stylesheet" href="{{ asset('/assets/bower_components/font-awesome/css/font-awesome.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('/assets/dist/css/AdminLTE.min.css') }}">
+    <!-- jQuery 3 -->
+    <script src="{{ asset('/assets/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+{{--    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">--}}
+
+{{--    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>--}}
     @yield('style-sheets')
     <!-- Dashboard style -->
     <link rel="stylesheet" href="{{ asset('/assets/css/dashboard.min.css?v='.time()) }}">
@@ -31,7 +38,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
     @include('layouts.master-ng-app')
-    @yield('head-scripts')
+    @stack('head-scripts')
 
 </head>
 <body class="{{ $bodyClass?? '' }}" ng-app="myApp" ng-controller="LayoutController">
@@ -69,9 +76,6 @@
         @yield('content')
     @endguest
 
-
-    <!-- jQuery 3 -->
-    <script src="{{ asset('/assets/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="{{ asset('/assets/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('/assets/js/sweetalert2.all.min.js') }}" ></script>

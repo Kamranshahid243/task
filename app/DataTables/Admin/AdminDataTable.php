@@ -21,7 +21,7 @@ class AdminDataTable extends DataTable
     {
         return datatables( $query )
         ->addColumn('id', function( $query ){
-           
+
             return $query->id;
 
         })
@@ -42,19 +42,19 @@ class AdminDataTable extends DataTable
                 return $query->mobile;
             }
             return 'N/A';
-            
+
         })
         ->addColumn('role_id', function( $query ){
             return $query->role->name;
         })
-  
+
         ->addColumn('created_by', function( $query ){
-            
+
             if( $query->created_by ){
                 return $query->creator->first_name.' '.$query->creator->last_name;
             }
             return 'N/A';
-            
+
         })
         ->addColumn('created_at', function( $query ){
             if( $query->created_at ){
@@ -73,7 +73,7 @@ class AdminDataTable extends DataTable
             else{
                 $links .= ' <a href="#" data-id="'.$query->id.'" data-url="/admin/users/management/'.$query->id.'/block" data-toggle="tooltip" data-placement="top" title="Block" data-action="block" class="custom-table-btn btn btn-xs btn-default" data-original-title="Block"><i class="fa fa-ban"></i></a>';
             }
-            
+
             return $links;
         })
         ->rawColumns(['id','first_name',  'email', 'mobile', 'role_id', 'created_by', 'created_at', 'action']);
@@ -98,7 +98,7 @@ class AdminDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    
+
             ->addColumn([ 'data' => 'id', 'title' => 'ID' ])
             ->addColumn([ 'data' => 'first_name',  'title' => 'Full Name' ])
             ->addColumn([ 'data' => 'email','title' => 'Email Address' ])

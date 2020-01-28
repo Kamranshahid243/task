@@ -37,6 +37,11 @@
                     <i class="fa fa-dashboard"></i> <span>Test</span>
                 </a>
             </li>
+            <li class="{{ $page == 'dashboard' ? 'active' : '' }}">
+                <a href="{{ url('/admin/ad-management') }}">
+                    <i class="fa fa-dashboard"></i> <span>Ad Management</span>
+                </a>
+            </li>
             <li class="treeview {{ $page == 'profile' ? 'active' : '' }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
