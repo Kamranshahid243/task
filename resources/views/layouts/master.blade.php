@@ -36,12 +36,11 @@
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
-    @include('layouts.master-ng-app')
+{{--    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>--}}
     @stack('head-scripts')
 
 </head>
-<body class="{{ $bodyClass?? '' }}" ng-app="myApp" ng-controller="LayoutController">
+<body class="{{ $bodyClass?? '' }}">
 
 
     @auth('admin')

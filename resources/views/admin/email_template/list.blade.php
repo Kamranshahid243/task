@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $title)
+@section('title', $title) 
 
 
 @section('style-sheets')
@@ -29,17 +29,17 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Email Template Management</h3>
-                    <a href="{{ url('/admin/email-templates/create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>  <span>Create Template</span></a>
+                    <h3 class="box-title">Users Management</h3>
+                    <a href="{{ url('/admin/users/management/create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>  <span>Create Account</span></a>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <div class="table-responsive">
+                    <div class="table-responsive">  
                         {!! $dataTable->table(['class' => 'table table-striped custom-table datatable auc-table-with-thumbs', 'width' => '100%', 'cellspacing' => '0'])  !!}
                     </div>
                 </div>
-
-            </div>
+              
+            </div>            
         </div>
     </div>
 

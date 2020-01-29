@@ -65,18 +65,8 @@ $page=  '';
 $child=  '';
 $bodyClass='skin-blue ';
 ?>
-@section('head-scripts')
-    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-@endsection
 @section('style-sheets')
     <link rel="stylesheet" href="{{ asset('/assets/dist/css/skins/_all-skins.min.css') }}">
-{{--    <!-- Select2 -->--}}
-{{--    <link rel="stylesheet" href="{{ asset('/assets/bower_components/select2/dist/css/select2.min.css') }}">--}}
-{{--    <!-- DataTables -->--}}
-{{--    <link rel="stylesheet" href="{{ asset('/assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">--}}
-
-    <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-
 @endsection
 
 @section('content')
@@ -89,20 +79,6 @@ $bodyClass='skin-blue ';
 
         <!-- Main content -->
         <section class="content">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Email Template Management</h3>
-                            <a href="#" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>  <span>Create New Template</span></a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            @include('admin.email_template.email-templates')
-            @include('admin.email_template.create')
-            @include('admin.email_template.update')
             <!-- /.row -->
 
         </section>

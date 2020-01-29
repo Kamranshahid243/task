@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 
 class Admin extends Authenticatable
 {
@@ -14,6 +15,14 @@ class Admin extends Authenticatable
     protected $table = 'admins';
 
     public $incrementing = false;
+
+    public $appends=['login_id'];
+
+    public function getTableColumns($table)
+    {
+        return DB::getSchemaBuilder()->getColumnListing($table);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -54,7 +63,7 @@ class Admin extends Authenticatable
     public function country(){
         return $this->hasOne(Country::class, 'id', 'country_id');
     }
-    
+
     public function state(){
         return $this->hasOne(State::class, 'id', 'state_id');
     }
