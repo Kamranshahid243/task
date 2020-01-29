@@ -37,11 +37,6 @@
                     <i class="fa fa-dashboard"></i> <span>Email Templates</span>
                 </a>
             </li>
-            <li class="{{ $page == 'dashboard' ? 'active' : '' }}">
-                <a href="{{ url('/admin/ad-management') }}">
-                    <i class="fa fa-dashboard"></i> <span>Ad Management</span>
-                </a>
-            </li>
             <li class="treeview {{ $page == 'profile' ? 'active' : '' }}">
                 <a href="#">
                     <i class="fa fa-user"></i>
@@ -53,6 +48,19 @@
                 <ul class="treeview-menu">
                     <li class="{{ $child == 'profile_update' ? 'active' : '' }}"><a href="{{ url('/admin/profile') }}"><i class="fa fa-circle-o"></i> Edit Profile</a></li>
                     <li class="{{ $child == 'profile_reset_password' ? 'active' : '' }}"><a href="{{ url('/admin/password') }}"><i class="fa fa-circle-o"></i> Reset Password</a></li>
+                </ul>
+            </li>
+            <li class="treeview {{ $page == 'profile' ? 'active' : '' }}">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>Ad Management</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ $child == 'profile_update' ? 'active' : '' }}"><a href="{{ url('/admin/profile') }}"><i class="fa fa-circle-o"></i>Categories</a></li>
+                    <li class="{{ $child == 'profile_reset_password' ? 'active' : '' }}"><a href="{{ url('/admin/password') }}"><i class="fa fa-circle-o"></i>Sub Categories</a></li>
                 </ul>
             </li>
             <li class="{{ $page == 'security' ? 'active' : '' }}">
