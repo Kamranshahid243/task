@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0fc8b42a37132c84742340b0928b25c7",
+    "content-hash": "ec7bd3e78cb03696426614c4019eb361",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1807,6 +1807,45 @@
                 "php"
             ],
             "time": "2019-11-08T13:50:10+00:00"
+        },
+        {
+            "name": "nvd/crud-generator",
+            "version": "1.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/engrnvd/laravel-crud-generator.git",
+                "reference": "7c6e961dae1ae10156e04ce80d54d3d5e755cebb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/engrnvd/laravel-crud-generator/zipball/7c6e961dae1ae10156e04ce80d54d3d5e755cebb",
+                "reference": "7c6e961dae1ae10156e04ce80d54d3d5e755cebb",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Nvd\\Crud\\": [
+                        "src"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Naveed ul Hassan",
+                    "email": "08es34@gmail.com"
+                }
+            ],
+            "description": "CRUD generator for Laravel",
+            "abandoned": true,
+            "time": "2016-02-03T06:27:10+00:00"
         },
         {
             "name": "opis/closure",
