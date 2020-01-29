@@ -180,11 +180,29 @@ class EmailController extends Controller
      */
     public function create()
     {
+        $admin=new Admin();
+        $adminVar=$admin->getTableColumns('admins');
+        unset($adminVar['id']);
+        unset($adminVar['password']);
+        unset($adminVar['0_password']);
+        foreach ($adminVar as $key=>$column){
+            $adminVar[$key]="{".$column."} ";
+        }
+
+        $customer = new Customer();
+        $customerVar=$customer->getTableColumns('customers');
+
+        foreach ($customerVar as $key=>$column){
+            $customerVar[$key]="{".$column."} ";
+        }
+
         return view('admin.email_template.create_template', [
             'title' => 'Admin | Create Email',
             'page' => 'email-list',
             'child' => '',
             'roles' => Role::all(),
+            'customerVar' => $customerVar,
+            'adminVar' => $adminVar,
             'bodyClass' => $this->bodyClass
         ]);
     }

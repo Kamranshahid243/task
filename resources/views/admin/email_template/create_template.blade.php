@@ -39,7 +39,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Role<span class="text-red">*</span></label>
-                                    <select class="form-control" name="role_id">
+                                    <select class="form-control" id="role_id" name="role_id">
                                         @if( $roles->count() )
                                             @foreach( $roles as $role )
                                                 <option value="{{ $role->id }}"> {{ $role->name }} </option>
@@ -52,12 +52,21 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <ul>
-
-                                        @foreach($adminVar as $var)
-                                            <li style="float: left;color: red;margin-left:2em">{{$var}}</li>
-                                        @endforeach
-                                    </ul>
+                                    @if(isset($adminVar))
+                                        <ul id="adminVariable" style="display: none">
+                                            @foreach($adminVar as $var)
+                                                <li>{{$var}},</li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                    @if(isset($customerVar))
+                                        <ul id="customerVariable" style="display: none">
+                                            @foreach($customerVar as $var)
+                                                <li>{{$var}},</li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+                                    <div class="clearfix"></div>
                                     <label>Body<span class="text-red">*</span></label>
                                     <textarea name="body" id="editor1" rows="10" cols="80">
                                 </textarea>
@@ -84,9 +93,40 @@
         </section>
         <!-- /.content -->
     </div>
+    <style>
+        ul li {
+            float: left;
+            margin-left: 1em;
+            color: red;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
 @endsection
 
 @section('scripts')
+    <script>
+        var adminVar = document.getElementById('adminVariable');
+        var customerVar = document.getElementById('customerVariable');
+        var role_id = document.getElementById('role_id');
+        if (role_id.value <= 2) {
+            adminVar.style.display = "block";
+        } else {
+            customerVar.style.display = "block";
+        }
+
+        function showVar() {
+            adminVar.style.display = "none";
+            customerVar.style.display = "none";
+            if (role_id.value <= 2) {
+                adminVar.style.display = "block";
+            } else {
+                customerVar.style.display = "block"
+            }
+        }
+    </script>
     <script src="{{ asset('/assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
 
     <!-- AdminLTE App -->
