@@ -5,22 +5,25 @@ return [
     /*
      * Layout template used when generating views
      * */
-    'layout' => 'layouts.app',
+    'layout' => 'layouts.master',
     /*
      * Views that will be generated. If you wish to add your own view,
      * make sure to create a template first in the
      * '/resources/views/crud-templates/views' directory.
      * */
     'views' => [
-        'index',
-        'ng-app',
+        'create',
+        'edit',
+        'list',
+        'show',
+        'helper',
     ],
 
     /*
      * Directory containing the templates
      * If you want to use your custom templates, specify them here
      * */
-    'templates' => 'vendor.crud.ng-templates',
+    'templates' => 'vendor.crud.datatables',
 
     /*
      * Routes file location

@@ -27,11 +27,12 @@ Route::prefix('admin')->namespace('Auth')->group(function () {
 });
 
 Route::prefix('admin')->namespace('Admin')->group(function () {
+    // nvd-crud routes go here
 
     // Customer routes
-    Route::resource('/customers', 'CustomerController');
-    Route::post('/customers/block/{id}', 'CustomerController@block');
-    Route::post('/customers/unblock/{id}', 'CustomerController@unblock');
+//    Route::resource('/customers', 'CustomerController');
+//    Route::post('/customers/block/{id}', 'CustomerController@block');
+//    Route::post('/customers/unblock/{id}', 'CustomerController@unblock');
 
     // Admin routes
     Route::resource('/users/management', 'AdminController');
@@ -40,82 +41,82 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 
     // Package routes
-    Route::resource('/packages', 'PackageController');
-    Route::post('/packages/block/{id}', 'PackageController@block');
-    Route::post('/packages/unblock/{id}', 'PackageController@unblock');
+//    Route::resource('/packages', 'PackageController');
+//    Route::post('/packages/block/{id}', 'PackageController@block');
+//    Route::post('/packages/unblock/{id}', 'PackageController@unblock');
 
     // Service routes
-    Route::resource('/services', 'ServiceController');
-    Route::post('/services/block/{id}', 'ServiceController@block');
-    Route::post('/services/unblock/{id}', 'ServiceController@unblock');
-
-    // Package Extras  routes
-    Route::resource('/extras', 'ExtraController');
-    Route::post('/extras/block/{id}', 'ExtraController@block');
-    Route::post('/extras/unblock/{id}', 'ExtraController@unblock');
+//    Route::resource('/services', 'ServiceController');
+//    Route::post('/services/block/{id}', 'ServiceController@block');
+//    Route::post('/services/unblock/{id}', 'ServiceController@unblock');
+//
+//    // Package Extras  routes
+//    Route::resource('/extras', 'ExtraController');
+//    Route::post('/extras/block/{id}', 'ExtraController@block');
+//    Route::post('/extras/unblock/{id}', 'ExtraController@unblock');
 
 
 
 
     // Testimonials  routes
-    Route::resource('/testimonials', 'TestimonialController');
-    Route::post('/testimonials/approve/{id}', 'TestimonialController@approve');
-    Route::post('/testimonials/disapprove/{id}', 'TestimonialController@disapprove');
+//    Route::resource('/testimonials', 'TestimonialController');
+//    Route::post('/testimonials/approve/{id}', 'TestimonialController@approve');
+//    Route::post('/testimonials/disapprove/{id}', 'TestimonialController@disapprove');
 
     // Support Ticket  routes
-    Route::get('/tickets/attachment/delete/{id}', 'TicketController@deleteAttachment');
-    Route::get('/ticket/attachment/download/{id}', 'TicketController@download');
-    Route::post('/tickets/reply/delete/{id}', 'TicketController@destroy');
-    Route::post('/tickets/reply/update/{id}', 'TicketController@update');
-    Route::get('/tickets/reply/edit/{id}', 'TicketController@edit');
-    Route::post('/tickets/open/{id}', 'TicketController@open');
-    Route::post('/tickets/close/{id}', 'TicketController@close');
-    Route::post('/tickets/reply/{id}', 'TicketController@reply');
-    Route::get('/tickets/{id}', 'TicketController@show');
-    Route::get('/tickets', 'TicketController@index');
+//    Route::get('/tickets/attachment/delete/{id}', 'TicketController@deleteAttachment');
+//    Route::get('/ticket/attachment/download/{id}', 'TicketController@download');
+//    Route::post('/tickets/reply/delete/{id}', 'TicketController@destroy');
+//    Route::post('/tickets/reply/update/{id}', 'TicketController@update');
+//    Route::get('/tickets/reply/edit/{id}', 'TicketController@edit');
+//    Route::post('/tickets/open/{id}', 'TicketController@open');
+//    Route::post('/tickets/close/{id}', 'TicketController@close');
+//    Route::post('/tickets/reply/{id}', 'TicketController@reply');
+//    Route::get('/tickets/{id}', 'TicketController@show');
+//    Route::get('/tickets', 'TicketController@index');
 
     // Blog Post routes
-    Route::resource('/blog/posts', 'PostController');
-    Route::get('/blog/posts/{id}/view', 'PostController@view');
-    Route::post('/blog/posts/attachment/upload', 'PostController@upload');
-    Route::post('/blog/posts/hide/{id}', 'PostController@hidden');
-    Route::post('/blog/posts/show/{id}', 'PostController@visible');
+//    Route::resource('/blog/posts', 'PostController');
+//    Route::get('/blog/posts/{id}/view', 'PostController@view');
+//    Route::post('/blog/posts/attachment/upload', 'PostController@upload');
+//    Route::post('/blog/posts/hide/{id}', 'PostController@hidden');
+//    Route::post('/blog/posts/show/{id}', 'PostController@visible');
 
     // Tutorial routes
-    Route::resource('/tutorials', 'TutorialController');
-    Route::get('/tutorials/{id}/view', 'TutorialController@view');
-    Route::post('/tutorials/attachment/upload', 'TutorialController@upload');
-    Route::post('/tutorials/hide/{id}', 'TutorialController@hidden');
-    Route::post('/tutorials/show/{id}', 'TutorialController@visible');
+//    Route::resource('/tutorials', 'TutorialController');
+//    Route::get('/tutorials/{id}/view', 'TutorialController@view');
+//    Route::post('/tutorials/attachment/upload', 'TutorialController@upload');
+//    Route::post('/tutorials/hide/{id}', 'TutorialController@hidden');
+//    Route::post('/tutorials/show/{id}', 'TutorialController@visible');
 
     // Task routes
-    Route::get('/tasks/{id}/assign', 'TaskController@assign');
-    Route::post('/tasks/assign/update', 'TaskController@assignUpdate');
-    Route::resource('/tasks', 'TaskController');
-    Route::get('/tasks/attachment/delete/{id}', 'TaskController@deleteAttachment');
-    Route::get('/tasks/{id}/view', 'TaskController@view');
-    Route::post('/tasks/attachment/upload', 'TaskController@upload');
-    Route::post('/tasks/hide/{id}', 'TaskController@hidden');
-    Route::post('/tasks/show/{id}', 'TaskController@visible');
+//    Route::get('/tasks/{id}/assign', 'TaskController@assign');
+//    Route::post('/tasks/assign/update', 'TaskController@assignUpdate');
+//    Route::resource('/tasks', 'TaskController');
+//    Route::get('/tasks/attachment/delete/{id}', 'TaskController@deleteAttachment');
+//    Route::get('/tasks/{id}/view', 'TaskController@view');
+//    Route::post('/tasks/attachment/upload', 'TaskController@upload');
+//    Route::post('/tasks/hide/{id}', 'TaskController@hidden');
+//    Route::post('/tasks/show/{id}', 'TaskController@visible');
 
     // Social link routes
-    Route::resource('/sociallinks', 'SocialController');
+//    Route::resource('/sociallinks', 'SocialController');
 
     // Company settings routes
-    Route::get('/company/address', 'CompanyController@viewAddress');
-    Route::get('/company/privacy', 'CompanyController@viewPrivacy');
-    Route::get('/company/terms', 'CompanyController@viewTerms');
-    Route::post('/company/address/update', 'CompanyController@updateAddress');
-    Route::post('/company/privacy/update', 'CompanyController@updatePrivacy');
-    Route::post('/company/terms/update', 'CompanyController@updateTerms');
-    Route::resource('/company', 'CompanyController');
+//    Route::get('/company/address', 'CompanyController@viewAddress');
+//    Route::get('/company/privacy', 'CompanyController@viewPrivacy');
+//    Route::get('/company/terms', 'CompanyController@viewTerms');
+//    Route::post('/company/address/update', 'CompanyController@updateAddress');
+//    Route::post('/company/privacy/update', 'CompanyController@updatePrivacy');
+//    Route::post('/company/terms/update', 'CompanyController@updateTerms');
+//    Route::resource('/company', 'CompanyController');
 
-    Route::resource('/company/emails', 'CompanyEmailController');
-    Route::resource('/company/phones', 'CompanyPhoneController');
+//    Route::resource('/company/emails', 'CompanyEmailController');
+//    Route::resource('/company/phones', 'CompanyPhoneController');
 
 
     // Email
-    Route::resource('/email-templates', 'EmailController');
+//    Route::resource('/email-templates', 'EmailController');
 
 
 //    Route::post('/email-template','EmailController@storeTemplate');
@@ -135,10 +136,10 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/search/{searchQuery}', 'AdminController@search');
 
 
-    Route::post('/security/password/expiry/{status}', 'securityController@passwordExpiry');
-    Route::post('/security/login/approval/code/{status}', 'securityController@loginApprovalCode');
-    Route::post('/security/otp/{status}', 'securityController@otp');
-    Route::get('/security/settings', 'securityController@showSecurityForms');
+    Route::post('/security/password/expiry/{status}', 'SecurityController@passwordExpiry');
+    Route::post('/security/login/approval/code/{status}', 'SecurityController@loginApprovalCode');
+    Route::post('/security/otp/{status}', 'SecurityController@otp');
+    Route::get('/security/settings', 'SecurityController@showSecurityForms');
 
     // Notifications routes
     Route::post('/notifications/{id}', 'NotificationController@destroy');
