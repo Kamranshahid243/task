@@ -32,9 +32,9 @@
                 <a href="{{ url('/admin/dashboard') }}">
                     <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                 </a>
-            </li><li class="{{ $page == 'dashboard' ? 'active' : '' }}">
-                <a href="{{ url('/admin/test') }}">
-                    <i class="fa fa-dashboard"></i> <span>Test</span>
+            </li><li class="{{ $page == 'email-list' ? 'active' : '' }}">
+                <a href="{{ url('/admin/email-templates') }}">
+                    <i class="fa fa-dashboard"></i> <span>Email Templates</span>
                 </a>
             </li>
             <li class="{{ $page == 'dashboard' ? 'active' : '' }}">

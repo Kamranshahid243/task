@@ -2,22 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5c054c3-d1ea-444e-9091-fc57ea46eefc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/ad/show.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/DataTables/Admin/EmailTemplateDataTable.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/admin/email_template/list.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/DataTables/Admin/AdminDataTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataTables/Admin/AdminDataTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/EmailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/EmailController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/EmailController.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/EmailTemplate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/EmailTemplate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/test/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/test/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/test/test-ng-app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/test/test-ng-app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/admin/notifications.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/admin/notifications.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/test/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/email_template/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/test/email-templates.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/email_template/email-templates.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/test/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/email_template/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/test/test-ng-app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/email_template/test-ng-app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/admin/test/update.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/email_template/update.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/includes/admin/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/admin/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/admin/topbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/admin/topbar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master-ng-app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master-ng-app.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/master.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -154,16 +150,16 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/Models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/admin/email_template" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\task\resources\views\admin\email_template" />
+      <recent name="C:\xampp\htdocs\task\app\DataTables\Admin" />
       <recent name="C:\xampp\htdocs\task\app\Models" />
       <recent name="C:\xampp\htdocs\task\app\Http\Controllers\Admin" />
       <recent name="C:\xampp\htdocs\task\resources\views\admin" />
-      <recent name="C:\xampp\htdocs\task\resources\views\admin\test" />
-      <recent name="C:\xampp\htdocs\task\app\DataTables\Admin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\xampp\htdocs\asadbahi\app\Models" />
@@ -207,21 +203,25 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="350" y="63" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1580287464010">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="350" y="63" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.0.1366.728@0.0.1366.728" timestamp="1580287464010" />
     <state x="463" y="273" key="NewPhpFileDialog" timestamp="1580233416178">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="273" key="NewPhpFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1580233416178" />
-    <state x="289" y="38" width="805" height="652" key="find.popup" timestamp="1580214648807">
+    <state x="289" y="38" width="805" height="652" key="find.popup" timestamp="1580282355736">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="289" y="38" width="805" height="652" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1580214648807" />
-    <state x="255" y="159" key="run.anything.popup" timestamp="1580158250790">
+    <state x="289" y="38" width="805" height="652" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1580282355736" />
+    <state x="255" y="159" key="run.anything.popup" timestamp="1580280127655">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="255" y="159" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1580158250790" />
-    <state x="262" y="0" width="840" height="726" key="search.everywhere.popup" timestamp="1580233762285">
+    <state x="255" y="159" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1580280127655" />
+    <state x="262" y="0" width="840" height="726" key="search.everywhere.popup" timestamp="1580286872824">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="262" y="0" width="840" height="726" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1580233762285" />
+    <state x="262" y="0" width="840" height="726" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1580286872824" />
   </component>
 </project>

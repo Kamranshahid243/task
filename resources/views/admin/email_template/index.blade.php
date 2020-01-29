@@ -84,7 +84,7 @@ $bodyClass='skin-blue ';
     <!-- Content Wrapper. Contains page content -->
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper" style="min-height: 1126px;"  ng-controller="TestController">
+    <div class="content-wrapper" style="min-height: 1126px;">
         <!-- Content Header (Page header) -->
 
         <!-- Main content -->
@@ -94,20 +94,20 @@ $bodyClass='skin-blue ';
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Email Template Management</h3>
-                            <a href="#" class="btn btn-primary pull-right" ng-click="emailForm= 'email form'"><i class="fa fa-plus"></i>  <span>Create New Template</span></a>
+                            <a href="#" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>  <span>Create New Template</span></a>
                         </div>
 
                     </div>
                 </div>
             </div>
-            @include('admin.test.email-templates')
-            @include('admin.test.create')
-            @include('admin.test.update')
+            @include('admin.email_template.email-templates')
+            @include('admin.email_template.create')
+            @include('admin.email_template.update')
             <!-- /.row -->
 
         </section>
         <!-- /.content -->
     </div>
-    @include('admin.test.test-ng-app')
+{{--    @include('admin.email_template.test-ng-app')--}}
 @endsection
 

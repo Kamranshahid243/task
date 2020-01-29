@@ -115,17 +115,20 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
 
     // Email
-    Route::post('/email-template','EmailController@storeTemplate');
-    Route::get('/role','RoleController@index');
-    Route::post('/email-update-form','EmailController@emailUpdateForm');
-    Route::get('/load-email-templates','EmailController@loadEmailTemplates');
+    Route::resource('/email-templates', 'EmailController');
 
-    Route::post('/ad-management','AdController@store');
-    Route::get('/load-ads','AdController@load');
+
+//    Route::post('/email-template','EmailController@storeTemplate');
+//    Route::get('/role','RoleController@index');
+//    Route::post('/email-update-form','EmailController@emailUpdateForm');
+//    Route::get('/load-email-templates','EmailController@loadEmailTemplates');
+
+//    Route::post('/ad-management','AdController@store');
+//    Route::get('/load-ads','AdController@load');
     // Logged In Admin Routes
     Route::get('/profile', 'ProfileController@index');
-    Route::get('/test', 'ProfileController@test');
-    Route::get('/ad-management', 'AdController@load');
+//    Route::get('/test', 'ProfileController@test');
+//    Route::get('/ad-management', 'AdController@load');
     Route::post('/profile/update', 'ProfileController@update');
     Route::get('/password', 'PasswordController@showPasswordResetForm');
     Route::post('/password/update', 'PasswordController@passwordUpdate');
