@@ -35,11 +35,10 @@ class {{ $gen->modelClassName() }}DataTable extends DataTable
             return 'N/A';
         })
 <?php } ?>
-
 <?php } ?>
 <?php } ?>
-        ->addColumn('created_at', function( $query ){
-            if( $query->created_at ){
+        ->addColumn('created_at', function($query){
+            if($query->created_at){
                 return $query->created_at->toFormattedDateString();
             }
             return 'N/A';
