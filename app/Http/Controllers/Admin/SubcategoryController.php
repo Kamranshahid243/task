@@ -26,13 +26,13 @@ class SubcategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         return view('admin.subcategories.list', [
-            'title'     => 'Admin | Subcategories Management', 
-            'page'      => 'subcategory-list', 
-            'child'     => '', 
+            'title'     => 'Admin | Subcategories Management',
+            'page'      => 'subcategory-list',
+            'child'     => '',
             'subcategories' => Subcategory::all(),
-            'categories'  => Category::all(), 
+            'categories'  => Category::all(),
             'bodyClass' => $this->bodyClass
         ]);
     }
@@ -44,7 +44,7 @@ class SubcategoryController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -55,7 +55,6 @@ class SubcategoryController extends Controller
      */
     public function store(Request $request)
     {
-
         request()->validate([
             'name' => 'required|max:255',
             'description' => 'required',
@@ -71,7 +70,7 @@ class SubcategoryController extends Controller
                 'message' => 'Category does not exist!'
             ], 500);
         }
-       
+
         if( !request()->has('attachments-0') ){
             return response()->json([
                 'status' => 'error',
@@ -95,13 +94,13 @@ class SubcategoryController extends Controller
         $subcategory->category_id  = request()->category_id;
 
         if( $subcategory->save() ){
-            
+
 
             $role = Role::where( 'nickname', 'superadmin' )->first();
             $superadmins = Admin::where('role_id', $role->id)->where('id', '!=', auth()->user()->id)->get();
 
             Notification::send( Auth::user(), new NewCategoryAdded(  $subcategory, auth()->user(), 'self-notify', 'subcategory' ));
-            Notification::send( $superadmins, new NewCategoryAdded(  $subcategory, auth()->user(), 'all-notify', 'subcategory' )); 
+            Notification::send( $superadmins, new NewCategoryAdded(  $subcategory, auth()->user(), 'all-notify', 'subcategory' ));
 
             return response()->json([
                 'status' => 'success',
@@ -143,12 +142,12 @@ class SubcategoryController extends Controller
         }
 
         return view('admin.subcategories.edit', [
-            'title'     => 'Admin | Categories Management', 
-            'page'      => 'category-list', 
+            'title'     => 'Admin | Categories Management',
+            'page'      => 'category-list',
             'child'     => '',
             'subcategories' => Subcategory::all(),
-            'found'     => $subcategory,  
-            'categories'  => Category::all(), 
+            'found'     => $subcategory,
+            'categories'  => Category::all(),
             'bodyClass' => $this->bodyClass
         ]);
     }
@@ -171,7 +170,7 @@ class SubcategoryController extends Controller
         ]);
 
 
-       
+
         $category = Category::find( request()->category_id );
 
         if( !$category ){
@@ -181,7 +180,7 @@ class SubcategoryController extends Controller
             ], 500);
         }
 
-               
+
         $subcategory = Subcategory::find( $id );
 
         if( !$subcategory ){
@@ -209,15 +208,15 @@ class SubcategoryController extends Controller
         $subcategory->is_paused    = (request()->status == "1") ? false : true;
         $subcategory->category_id  = request()->category_id;
 
-        
+
         if( $subcategory->save() ){
-            
+
 
             $role = Role::where( 'nickname', 'superadmin' )->first();
             $superadmins = Admin::where('role_id', $role->id)->where('id', '!=', auth()->user()->id)->get();
 
             Notification::send( Auth::user(), new CategoryUpdated(  $subcategory, auth()->user(), 'self-notify', 'subcategory' ));
-            Notification::send( $superadmins, new CategoryUpdated(  $subcategory, auth()->user(), 'all-notify', 'subcategory' )); 
+            Notification::send( $superadmins, new CategoryUpdated(  $subcategory, auth()->user(), 'all-notify', 'subcategory' ));
 
             return response()->json([
                 'status' => 'success',
@@ -245,8 +244,8 @@ class SubcategoryController extends Controller
 
         $thumb = $subcategory->thumbnail ? str_replace('public/', 'storage/', $subcategory->thumbnail) : null;
         if( $subcategory->delete() ){
-            
-            
+
+
 
             if( $thumb ) {
                 Storage::delete( $thumb );
@@ -256,7 +255,7 @@ class SubcategoryController extends Controller
             $superadmins = Admin::where('role_id', $role->id)->where('id', '!=', auth()->user()->id)->get();
 
             Notification::send( Auth::user(), new CategoryDeleted(  $subcategory, auth()->user(), 'self-notify', 'subcategory' ));
-            Notification::send( $superadmins, new CategoryDeleted(  $subcategory, auth()->user(), 'all-notify', 'subcategory' )); 
+            Notification::send( $superadmins, new CategoryDeleted(  $subcategory, auth()->user(), 'all-notify', 'subcategory' ));
 
             return response()->json([
                 'status' => 'success',

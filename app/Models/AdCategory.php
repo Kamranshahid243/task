@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 
-class EmailTemplate extends Model
+class AdCategory extends Model
 {
-
+    protected $table="auc_ad_categories";
 
     protected $guarded=['id'];
 
     public static function findRequested()
     {
-        $query=EmailTemplate::with(['role']);
+        $query=AdCategory::with(['role']);
         if(request('sort'))$query->orderBy(request('sort'), request("sortType", "asc"));
         if ($resPerPage = request("perPage"))
             return $query->paginate($resPerPage);
@@ -21,12 +21,8 @@ class EmailTemplate extends Model
 
     }
 
-    public function role()
-    {
-        return $this->belongsTo(Role::class);
-    }
     public function creator()
     {
-        return $this->belongsTo(Admin::class,'created_by','id');
+        return $this->hasOne(Admin::class,'id','created_by');
     }
 }

@@ -28,54 +28,39 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Create Account</h3>
+                    <h3 class="box-title">Create Ad Category</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-verticle form" method="post" action="{{ url('/admin/email-templates') }}">
+                <form class="form-verticle form" method="post" action="{{ url('/admin/ad-categories/'.$data->id) }}">
+                    @method('PUT')
                     @csrf
                     <div class="box-body">
-                        <div class="row">
+
+                        <div class="row content">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Role<span class="text-red">*</span></label>
-                                    <select class="form-control" onchange="showVar()" id="role_id" name="role_id">
-                                        @if( $roles->count() )
-                                            @foreach( $roles as $role )
-                                                <option value="{{ $role->id }}"> {{ $role->name }} </option>
-                                            @endforeach
-                                        @endif
-                                    </select>
+                                    <label>Name<span class="text-red">*</span></label>
+                                    <input type="text" value="{{$data->name}}" name="name" class="form-control">
                                 </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
                                 <div class="form-group">
-                                    @if(isset($adminVar))
-                                        <ul id="adminVariable" style="">
-                                            @foreach($adminVar as $var)
-                                                <li style="">{{$var}},</li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
-                                    @if(isset($customerVar))
-                                        <ul id="customerVariable" style="display: none">
-                                            @foreach($customerVar as $var)
-                                                <li>{{$var}},</li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
-                                    <div class="clearfix"></div>
-                                    <label>Body<span class="text-red">*</span></label>
-                                    <textarea name="body" id="editor1" rows="10" cols="80">
-                                </textarea>
-                                    <script>
-                                        // Replace the <textarea id="editor1"> with a CKEditor
-                                        // instance, using default configuration.
-                                        CKEDITOR.replace('editor1');
-                                    </script>
+                                    <label>Nickname<span class="text-red">*</span></label>
+                                    <input type="text" name="nickname" value="{{$data->nickname}}" class="form-control">
                                 </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>title<span class="text-red">*</span></label>
+                                        <input type="text" name="title" class="form-control" value="{{$data->title}}">
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">   <div class="form-group">
+                                        <label>Description<span class="text-red">*</span></label>
+                                        <textarea name="description" id="" cols="30" rows="5" class="form-control" value="{{$data->description}}"></textarea>
+                                    </div></div>
                             </div>
                         </div>
                     </div>
@@ -94,24 +79,17 @@
         <!-- /.content -->
     </div>
     <style>
-        #adminVariable {
-            margin-left: -5%;
-            list-style: none;
-        } #customerVariable {
-            margin-left: -5%;
-            list-style: none;
-        }
-        #adminVariable  li{
+        ul li {
+            float: left;
+            margin-left: 1em;
             color: red;
-            display: inline;
         }
 
-        #customerVariable  li{
-            color: red;
-            display: inline;
+        ul {
+            list-style: none;
         }
     </style>
-    @endsection
+@endsection
 
 @section('scripts')
     <script>

@@ -65,12 +65,8 @@ $page=  '';
 $child=  '';
 $bodyClass='skin-blue ';
 ?>
-@section('head-scripts')
-
-@endsection
 @section('style-sheets')
     <link rel="stylesheet" href="{{ asset('/assets/dist/css/skins/_all-skins.min.css') }}">
-
 @endsection
 
 @section('content')
@@ -78,43 +74,16 @@ $bodyClass='skin-blue ';
     <!-- Content Wrapper. Contains page content -->
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper" style="min-height: 1126px;" ng-controller="MainController">
+    <div class="content-wrapper" style="min-height: 1126px;">
         <!-- Content Header (Page header) -->
 
         <!-- Main content -->
         <section class="content">
-            <div class="row">
-                <div class="col-md-6">
-
-                    <!-- Profile Image -->
-                    <div class="box box-primary">
-                        <div class="box-header">
-                            Create Ad
-                        </div>
-                        <div class="box-body box-profile">
-                            <div class="form-group">
-                                <label for="title">Title</label>
-                                <input type="text" ng-model="title" class="form-control" id="title">
-                            </div>
-                            <div class="form-group">
-                                <label for="points">Points</label>
-                                <input type="number" class="form-control" ng-model="points" id="points">
-                            </div>
-                            <br><br>
-                            <button class="btn btn-primary" ng-click="save()" ng-disabled="!title && !points">Save</button>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-                    <!-- /.box -->
-
-                    <!-- /.box -->
-                </div>
-            </div>
-            @include('admin.ad.show')
+            <!-- /.row -->
 
         </section>
         <!-- /.content -->
     </div>
-    @include('admin.ad.ad-ng-app')
+{{--    @include('admin.email_template.test-ng-app')--}}
 @endsection
 

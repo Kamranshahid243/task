@@ -4,7 +4,7 @@
 
 @push('head-scripts')
     <script src="https://cdn.ckeditor.com/4.13.1/standard/ckeditor.js"></script>
-    @endpush
+@endpush
 @section('style-sheets')
     <link rel="stylesheet" href="{{ asset('/assets/dist/css/skins/_all-skins.min.css') }}">
     <!-- Select2 -->
@@ -32,17 +32,22 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-verticle form" method="post" action="{{ url('/admin/email-templates') }}">
+                <form class="form-verticle form" method="post" action="{{ url('/admin/email-templates/'.$data->id) }}">
                     @csrf
+                    @method('PUT')
                     <div class="box-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Role<span class="text-red">*</span></label>
-                                    <select class="form-control" onchange="showVar()" id="role_id" name="role_id">
+                                    <select id="role_id" class="form-control" name="role_id" onchange="showVar()">
                                         @if( $roles->count() )
                                             @foreach( $roles as $role )
-                                                <option value="{{ $role->id }}"> {{ $role->name }} </option>
+                                                @if($data->role_id==$role->id)
+                                                    <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
+                                                @else
+                                                    <option value="{{ $role->id }}"> {{ $role->name }} </option>
+                                                @endif
                                             @endforeach
                                         @endif
                                     </select>
@@ -53,9 +58,9 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     @if(isset($adminVar))
-                                        <ul id="adminVariable" style="">
+                                        <ul id="adminVariable" style="display: none">
                                             @foreach($adminVar as $var)
-                                                <li style="">{{$var}},</li>
+                                                <li>{{$var}},</li>
                                             @endforeach
                                         </ul>
                                     @endif
@@ -67,8 +72,10 @@
                                         </ul>
                                     @endif
                                     <div class="clearfix"></div>
+
                                     <label>Body<span class="text-red">*</span></label>
                                     <textarea name="body" id="editor1" rows="10" cols="80">
+                                        {{$data->body}}
                                 </textarea>
                                     <script>
                                         // Replace the <textarea id="editor1"> with a CKEditor
@@ -82,7 +89,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary pull-right form-btn"><i class="fa fa-check"></i>
-                            Create
+                            Update
                         </button>
                     </div>
                     <!-- /.box-footer -->
@@ -94,24 +101,17 @@
         <!-- /.content -->
     </div>
     <style>
-        #adminVariable {
-            margin-left: -5%;
-            list-style: none;
-        } #customerVariable {
-            margin-left: -5%;
-            list-style: none;
-        }
-        #adminVariable  li{
+        ul li {
+            float: left;
+            margin-left: 1em;
             color: red;
-            display: inline;
         }
 
-        #customerVariable  li{
-            color: red;
-            display: inline;
+        ul {
+            list-style: none;
         }
     </style>
-    @endsection
+@endsection
 
 @section('scripts')
     <script>
@@ -148,3 +148,4 @@
         })
     </script>
 @endsection
+

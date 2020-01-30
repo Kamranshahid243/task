@@ -16,8 +16,6 @@ class Admin extends Authenticatable
 
     public $incrementing = false;
 
-    public $appends=['login_id'];
-
     public function getTableColumns($table)
     {
         return DB::getSchemaBuilder()->getColumnListing($table);

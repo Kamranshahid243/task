@@ -29,47 +29,46 @@
         <div class="col-md-4">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Create New Subcategory</h3>
+                    <h3 class="box-title">Edit Subcategory</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-
-                <form class="form-verticle form-with-attachment" method="post" action="{{ url('/admin/subcategories/management') }}" enctype="multipart/form-data">
+                <form class="form-verticle" method="post" action="{{ url('/admin/subcategories/metadata/'.$found->id) }}">
+                    @method('put')
                     @csrf
                     <div class="box-body">
-                        <div class="form-group">
-                            <label for="exampleInputFile">Thumbnail<span class="text-red">*</span></label>
-                            <input type="file" class="auc-thumbnail" name="thumbnail">
-                            <br>
-                            <span><em>Valid thumbnail types are .jpg, jpeg, .png, .webp, .svg and .gif</em></span>
-                        </div>
-                        <div class="form-group">
-                            <label>Name<span class="text-red">*</span></label>
-                            <input type="text" class="form-control" name="name" placeholder="Name">
-                        </div>
-                        <div class="form-group">
-                            <label>Description<span class="text-red">*</span></label>
-                            <textarea type="text" class="form-control" name="description" placeholder="Description..."></textarea>
-                        </div>
                         <div class="form-group">
                             <label>Select category<span class="text-red">*</span></label>
                             <select class="form-control select2" name="category_id">
                                 @if( $categories->count() )
                                     @foreach( $categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @if($found->category_id==$category->id)
+                                            <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
+                                        @else
+                                            <option value="{{ $category->id }}"> {{ $category->name }} </option>
+                                        @endif
                                     @endforeach
                                 @endif
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>Status<span class="text-red">*</span></label>
-                            <select class="form-control select2" name="status">
-                                <option value="1">Play</option>
-                                <option value="0">Pause</option>
+                            <label>Select Subcategory<span class="text-red">*</span></label>
+                            <select class="form-control select2" name="sub_category_id">
+                                @if( $subcategories->count() )
+                                    @foreach( $subcategories as $subcategory )
+                                        @if($found->sub_category_id==$subcategory->id)
+                                            <option value="{{ $subcategory->id }}" selected>{{ $subcategory->name }}</option>
+                                        @else
+                                            <option value="{{ $subcategory->id }}"> {{ $subcategory->name }} </option>
+                                        @endif
+                                    @endforeach
+                                @endif
                             </select>
-                            <span><em>The Pause status hides the category from website and play does the opposite.</em></span>
                         </div>
-
+                        <div class="form-group">
+                            <label>Name<span class="text-red">*</span></label>
+                            <input type="text" class="form-control" name="key" value="{{$found->key}}">
+                        </div>
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
@@ -88,44 +87,36 @@
                 <div class="box-body">
                     <table id="data-table" class="table table-bordered table-striped">
                         <thead>
-                            <tr>
-                                <th>Thumbnail</th>
-                                <th>Name</th>
-                                <th>Category</th>
-                                <th>Status</th>
-                                <th>Created By</th>
-                                <th>Created At</th>
-                                <th>Action<s/th>
-                            </tr>
+                        <tr>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Sub Category</th>
+                            <th>Created By</th>
+                            <th>Created At</th>
+                            <th>Actions</th>
+                        </tr>
                         </thead>
-					<tbody>
-                        @if( isset( $subcategories ) and $subcategories->count() )
-                            @foreach( $subcategories as $subcategory )
+                        <tbody>
+                        @if( isset( $subcategories_metadata ) and $subcategories_metadata->count() )
+                            @foreach( $subcategories_metadata as $subcategory_meta )
                                 <tr>
-                                    <td><img class="thumb-square-50x50" src="{{ asset( $subcategory->thumbnail ) }}" ></td>
-                                    <td>{{ $subcategory->name }}</td>
-                                    <td>{{ $subcategory->category['name'] }}</td>
+                                    <td>{{ $subcategory_meta->key }}</td>
+                                    <td>{{ $subcategory_meta->category['name'] }}</td>
+                                    <td>{{ $subcategory_meta->subCategory['name'] }}</td>
+                                    <td>{{$subcategory_meta->creator['first_name']}}</td>
+                                    <td>{{ ( $subcategory_meta->created_at ) ? $subcategory_meta->created_at->toFormattedDateString() : 'n/a' }}</td>
                                     <td>
-                                        @if( $subcategory->is_paused == 1)
-                                        <span class="label label-danger">Pause</span>
-                                        @else
-                                        <span class="label label-success">Play</span>
-                                        @endif
-                                    </td>
-                                    <td>{!! ( $subcategory->created_by ) ? '<a href="'.url('/admin/users/management/'.$subcategory->creator->id).'">'.$subcategory->creator->first_name.' '.$subcategory->creator->last_name.'</a>' : 'n/a' !!}</td>
-                                    <td>{{ ( $subcategory->created_at ) ? $subcategory->created_at->toFormattedDateString() : 'n/a' }}</td>
-                                    <td>
-                                        <a href="{{ url('/admin/subcategories/management/'.$subcategory->id.'/edit') }}"  title="Edit" data-action="edit" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
-                                        <a href="#" data-type="admin" data-id="{{ $subcategory->id }}" data-url="/admin/subcategories/management/{{$subcategory->id}}"  title="Delete"data-action="delete" class="custom-table-btn btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
+                                        <a href="{{ url('/admin/subcategories/metadata/'.$subcategory_meta->id.'/edit') }}"  title="Edit" data-action="edit" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
+                                        <a href="#" data-type="admin" data-id="{{ $subcategory_meta->id }}" data-url="/admin/subcategories/metadata/{{$subcategory_meta->id}}"  title="Delete"data-action="delete" class="custom-table-btn btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
 
                                     </td>
                                 </tr>
                             @endforeach
                         @endif
 
-                    </tbody>
+                        </tbody>
 
-				</table>
+                    </table>
                 </div>
             </div>
         </div>

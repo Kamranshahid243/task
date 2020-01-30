@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAddTable extends Migration
+class CreateAucAdSubcategoryMetaDataTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateAddTable extends Migration
      */
     public function up()
     {
-        Schema::create('ads', function (Blueprint $table) {
+        Schema::create('auc_ad_subcategory_meta_data', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->nullable();
-            $table->integer('admin_id')->nullable();
-            $table->integer('points')->default(0);
+            $table->integer('category_id');
+            $table->integer('sub_category_id');
+            $table->string('key');
+            $table->string('created_by');
             $table->timestamps();
+
         });
     }
 
@@ -29,6 +31,8 @@ class CreateAddTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ads');
+        Schema::table('auc_ad_subcategory_meta_data', function (Blueprint $table) {
+            //
+        });
     }
 }

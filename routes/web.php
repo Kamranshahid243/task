@@ -37,7 +37,11 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::resource('/users/management', 'AdminController');
     Route::post('/users/management/{id}/block', 'AdminController@block');
     Route::post('/users/management/{id}/unblock', 'AdminController@unblock');
+//    Category Management
+    Route::resource('/ad-categories','AdCategoryController');//
 
+    //    Category Management
+    Route::resource('/ad-sub-categories','AdSubCategoryController');
 
     // Package routes
     Route::resource('/packages', 'PackageController');
@@ -156,8 +160,16 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::post('/categories/management/pause/{id}', 'CategoryController@pause');
     Route::post('/categories/management/play/{id}', 'CategoryController@play');
 
+    //Ads
+    Route::get('/ads/subcat-metadata','AdsController@SubCatDetails')->name('adDetails');
+    Route::resource('/ads','AdsController');
+    Route::get('/ads-metadata','AdsController@adMetadataForm');
+
     // Subcategories routes
     Route::resource('/subcategories/management', 'SubcategoryController');
+
+//    subcategories details
+    Route::resource('/subcategories/metadata', 'SubcategoryMetadataController');
 
     // Plans routes
     Route::resource('/plans/management', 'PlanController');

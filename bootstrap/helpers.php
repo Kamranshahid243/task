@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Storage;
 
 function getAdminID(){
 	return 'ADM-'. strtoupper( Str::random( 8 ) );
-} 
+}
 
 function getCustomerID(){
 	return 'ADM-'. strtoupper( Str::random( 8 ) );
@@ -29,29 +29,40 @@ function handleFileUpload( $file, $dir){
     $path = $file->store( $dir, 'public' );
 
     return [
-        'path' => 'public/'.$path, 
+        'path' => 'public/'.$path,
         'url' => 'storage/'.$path,
     ];
 }
+
+//if (request()->has('attachments-0')) {
+//    $uploaded = handleImageUpload(request()->file('attachments-0'), 'images/' . auth()->user()->id, 200, 200);
+//
+//    if ($user->avatar_file_path) {
+//        Storage::delete($user->avatar_file_path);
+//    }
+//
+//    $user->avatar_file_path = $uploaded['path'];
+//    $user->avatar = $uploaded['url'];
+//}
 
 // handles image upload
 function handleImageUpload( $file, $dir, $width=null, $height=null){
     $path = $file->store( $dir, 'public' );
 	//dd( file_exists(public_path( 'storage/'.$path )) );
     if( $width AND $height ){
-        
+
         //$image = Image::make( public_path( 'storage/'.$path )  )->fit( $width, $height );
         $image = Image::make( 'storage/'.$path   )->fit( $width, $height );
         $image->save();
     }
     return [
-        'path' => 'public/'.$path, 
+        'path' => 'public/'.$path,
         'url' => 'storage/'.$path,
     ];
 }
 
-function slug($text) { 
-    $text = strtolower(htmlentities($text)); 
+function slug($text) {
+    $text = strtolower(htmlentities($text));
     $text = str_replace(get_html_translation_table(), "-", $text);
     $text = str_replace(" ", "-", $text);
     $text = preg_replace("/[-]+/i", "-", $text);
@@ -62,7 +73,7 @@ function fileFileIcon($filename){
 
 	// <i class="fa fa-file-text"></i> Project-document.docx</a>
 	$ext = pathinfo($filename, PATHINFO_EXTENSION);
-	
+
 	if( $ext == 'docx' OR $ext == 'docm' OR $ext == 'dotx' OR  $ext == 'docb' OR  $ext == 'doc' OR  $ext == 'dot' ){
 		//ms word fa-file-word-o
 		return '<i class="fa fa-file-word-o"></i> '.$filename;
@@ -129,9 +140,9 @@ function fileFileIcon($filename){
 }
 
 function getDirectory( $userId, $dirName ){
-	
+
 	$publicPath = str_replace('\\','/',public_path());
-	$dir        = $userId.'/'.$dirName; 
+	$dir        = $userId.'/'.$dirName;
 	$path       = $publicPath.'/'.$dir;
 
 	if(!is_dir($path)){
@@ -142,7 +153,7 @@ function getDirectory( $userId, $dirName ){
 }
 
 function getFormattedTime( $date ){
-	
+
 
 
 	$datetime1 = new DateTime( $date );
@@ -150,7 +161,7 @@ function getFormattedTime( $date ){
 	$interval = $datetime1->diff($datetime2);
 
 	$string = $interval->format('%Y-%m-%d %H:%i:%s');
-	
+
 	$tmp  = explode(' ', $string);
 	$date = explode('-', $tmp[0]);
 	$time = explode(':', $tmp[1]);
@@ -158,7 +169,7 @@ function getFormattedTime( $date ){
 	$year  = (double)$date[0];
 	$month = (double)$date[1];
 	$day   = (double)$date[2];
-	
+
 	$hours   = (double)$time[0];
 	$minutes = (double)$time[1];
 	$seconds = (double)$time[2];
@@ -197,14 +208,14 @@ function isValid( $key, $value ){
 		case 'email': 			    return validate( 'email', 'Email', $value );
 		case 'password': 			return validate( 'password', 'Password', $value );
 		case 'phone': 			    return validate( 'phone', 'Phone', $value );
-		case 'role_id': 			return validate( 'numeric', 'Role', $value );	
+		case 'role_id': 			return validate( 'numeric', 'Role', $value );
 		case 'designation_id': 		return validate( 'numeric', 'Designation', $value );
 		case 'department_id': 		return validate( 'alphanumeric_without_spaces', 'Department', $value );
 		case 'epf_no': 				return validate( 'numeric', 'EPF Number', $value );
 		case 'salary': 				return validate( 'numeric_comma', 'Basic Salary', $value );
 		case 'shift_id': 			return validate( 'alphanumeric_without_spaces', 'Work Shift', $value );
-		case 'office_location': 	return validate( 'alphanumeric_space_slashe_hyphen_comma', 'Office Location', $value );	
-		case 'joining_date': 	    return validate( 'numeric_hyphens', 'Joining Date', $value );	
+		case 'office_location': 	return validate( 'alphanumeric_space_slashe_hyphen_comma', 'Office Location', $value );
+		case 'joining_date': 	    return validate( 'numeric_hyphens', 'Joining Date', $value );
 	}
 
 }
@@ -215,7 +226,7 @@ function validate( $type, $attribute, $value ){
 		return [ 'status' => 'error', 'message' => missing( $attribute )];
 	}
 	else{
-		
+
 
 		if( $type == 'passoword' ){
 			if( strlen( $value ) < 6){
@@ -237,56 +248,56 @@ function validate( $type, $attribute, $value ){
 
 		}
         else if( $type === 'alphabets_only' ){
-			
+
 			if( !preg_match('/^(Male|Female)+$/', $value) ){
 				return [ 'status' => 'error', 'message' => error( $attribute )];
 			}
-			
-		}  
+
+		}
         else if( $type === 'alphabets_with_spaces' ){
-			
+
 			if( !preg_match('/^[A-Za-z ]+$/', $value) ){
 				return [ 'status' => 'error', 'message' => error( $attribute )];
 			}
-			
-		}    
+
+		}
 		else if( $type === 'alphanumeric_without_spaces' ){
-			
+
 			if( !preg_match('/^[A-Z]+[0-9]+$/', $value) ){
 				return [ 'status' => 'error', 'message' => error( $attribute )];
 			}
-			
+
 		}
 		else if( $type === 'numeric' ){
-			
+
 			if( !preg_match('/^[0-9]+$/', $value) ){
 				return [ 'status' => 'error', 'message' => error( $attribute )];
 			}
-		
+
 		}
 		else if( $type === 'numeric_comma' ){
 
-			$value = str_replace( ',', '', $value );	
-			
+			$value = str_replace( ',', '', $value );
+
 			if( !preg_match('/^[0-9]+$/', $value) ){
 				return [ 'status' => 'error', 'message' => error( $attribute )];
 			}
-		
+
 		}
-		else if( $type === 'alphanumeric_space_slashe_hyphen_comma' ){	
-			
+		else if( $type === 'alphanumeric_space_slashe_hyphen_comma' ){
+
 			if( !preg_match('/^[a-zA-Z0-9,.!?\-? ]+$/', $value) ){
 				return [ 'status' => 'error', 'message' => error( $attribute )];
 			}
-		
-		}	
-		else if( $type === 'alphanumeric_space_slashe_hyphen_comma' ){	
-			
+
+		}
+		else if( $type === 'alphanumeric_space_slashe_hyphen_comma' ){
+
 			if( !preg_match('/^[0-9\-]+$/', $value) ){
 				return [ 'status' => 'error', 'message' => error( $attribute )];
 			}
-		
-		}		
+
+		}
 
 	}
 
@@ -295,5 +306,5 @@ function validate( $type, $attribute, $value ){
 
 function missing( $attribute ){ return $attribute.' is missing'; }
 function error( $attribute ){ return 'The ' .$attribute.' field contains invalid character(s)'; }
-	
+
 
