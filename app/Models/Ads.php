@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 
-class EmailTemplate extends Model
+class Ads extends Model
 {
 
-
-    protected $guarded=['id'];
+    protected $table='auc_ads';
+//    protected $guarded=['id'];
 
     public static function findRequested()
     {
