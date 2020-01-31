@@ -6,15 +6,15 @@ use App\Models\Role;
 use App\Models\Admin;
 use App\Models\Category;
 use App\Models\SubcategoryMetadata;
+use App\Notifications\Database\Admin\SubCategoryMetaDataDeleted;
+use App\Notifications\Database\Admin\SubCategoryMetaDataUpdate;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Subcategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Notification;
-use App\Notifications\Database\Admin\CategoryDeleted;
-use App\Notifications\Database\Admin\CategoryUpdated;
-use App\Notifications\Database\Admin\NewCategoryAdded;
+use App\Notifications\Database\Admin\SubCategoryMetaDataSaved;
 
 class SubcategoryMetadataController extends Controller
 {
@@ -78,6 +78,11 @@ class SubcategoryMetadataController extends Controller
         $subcategoryMeta->key = $request->key;
         $subcategoryMeta->created_by = Auth::user()->id;
         if( $subcategoryMeta->save() ){
+            $role = Role::where( 'nickname', 'superadmin' )->first();
+            $superadmins = Admin::where('role_id', $role->id)->where('id', '!=', auth()->user()->id)->get();
+
+            Notification::send( Auth::user(), new SubCategoryMetaDataSaved(  $subcategoryMeta, auth()->user(), 'self-notify' ));
+            Notification::send( $superadmins, new SubCategoryMetaDataSaved(  $subcategoryMeta, auth()->user(), 'all-notify' ));
             return response()->json( ['status' => 'success', 'message' => 'Record saved successfully!', 'refresh' => true], 200);
         }
 
@@ -115,10 +120,11 @@ class SubcategoryMetadataController extends Controller
 
         return view('admin.subcategory_metadata.edit', [
             'title'     => 'Admin | Categories Management',
-            'page'      => 'category-list',
+            'page'      => 'subcategory-metadata-list',
             'child'     => '',
             'subcategories' => Subcategory::all(),
             'found'     => $subcategoryMetaRec,
+            'subcategories_metadata' => SubcategoryMetadata::all(),
             'categories'  => Category::all(),
             'bodyClass' => $this->bodyClass
         ]);
@@ -133,18 +139,13 @@ class SubcategoryMetadataController extends Controller
      */
     public function update(Request $request, $id)
     {
-
-
         $category = Category::find( request()->category_id );
-
         if( !$category ){
             return response()->json([
                 'status' => 'error',
                 'message' => 'Category does not exist!'
             ], 500);
         }
-
-
         $subcategory = Subcategory::find( $request->sub_category_id );
         if( !$subcategory ){
             return response()->json([
@@ -166,6 +167,12 @@ class SubcategoryMetadataController extends Controller
             $sCMetaData->created_by = Auth::user()->id;
         }
         if( $sCMetaData->save() ){
+            $role = Role::where( 'nickname', 'superadmin' )->first();
+            $superadmins = Admin::where('role_id', $role->id)->where('id', '!=', auth()->user()->id)->get();
+
+            Notification::send( Auth::user(), new SubCategoryMetaDataUpdate(  $sCMetaData, auth()->user(), 'self-notify' ));
+            Notification::send( $superadmins, new SubCategoryMetaDataUpdate(  $sCMetaData, auth()->user(), 'all-notify' ));
+            return response()->json( ['status' => 'success', 'message' => 'Record saved successfully!', 'refresh' => true], 200);
             return response()->json( ['status' => 'success', 'message' => 'Action was successful', 'refresh' => true], 200);
         }
 
@@ -189,6 +196,11 @@ class SubcategoryMetadataController extends Controller
             return response()->json( ['status' => 'error', 'message' => 'Record does not exist!'], 500);
         }
             if ($subcategoryMetaDlt->delete()){
+                $role = Role::where( 'nickname', 'superadmin' )->first();
+                $superadmins = Admin::where('role_id', $role->id)->where('id', '!=', auth()->user()->id)->get();
+
+                Notification::send( Auth::user(), new SubCategoryMetaDataDeleted(  $subcategoryMetaDlt, auth()->user(), 'self-notify' ));
+                Notification::send( $superadmins, new SubCategoryMetaDataDeleted(  $subcategoryMetaDlt, auth()->user(), 'all-notify' ));
                 return response()->json( ['status' => 'success', 'message' => 'Record deleted successfully!', 'refresh' => true], 200);
             }
         return response()->json( ['status' => 'error', 'message' => 'Failed to delete Record!'], 500);

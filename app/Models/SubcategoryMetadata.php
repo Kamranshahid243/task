@@ -20,6 +20,6 @@ class SubcategoryMetadata extends Model
         return $this->hasOne( Category::class, 'id', 'category_id');
     }
     public function subCategory(){
-        return $this->hasOne( Subcategory::class, 'id', 'category_id');
+        return $this->belongsTo( Subcategory::class);
     }
 }

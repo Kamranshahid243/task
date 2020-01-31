@@ -10,6 +10,10 @@ use App\Models\Customer;
 use App\Models\EmailTemplate;
 use App\Models\Gender;
 use App\Models\Role;
+use App\Notifications\Database\Admin\EmailTemplateCreated;
+use App\Notifications\Database\Admin\EmailTemplateDeleted;
+use App\Notifications\Database\Admin\EmailTemplateUpdated;
+use App\Notifications\Database\Admin\UserCreated;
 use App\Notifications\Database\Admin\UserDeleted;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,8 +41,8 @@ class EmailController extends Controller
             $model = EmailTemplate::select();
 
             return DataTables::eloquent($model)
-                ->addColumn('role_id', function ($user) {
-                    return $user->role->name;
+                ->addColumn('name', function ($user) {
+                    return $user->creator->first_name." ".$user->creator->last_name;
                 })
                 ->addColumn('first_name', function ($query) {
                     $dom = '<h2 class="table-avatar clearfix">';
@@ -77,7 +81,7 @@ class EmailController extends Controller
 
                     return $links;
                 })
-                ->rawColumns(['first_name', 'action'])
+                ->rawColumns(['body', 'name','first_name', 'action'])
                 ->smart(true)
                 ->toJson();
         } else if (empty(request('search')['value']) AND request('order')[0]['column'] >= 0 AND !empty(request('order')[0]['dir'])) {
@@ -102,11 +106,11 @@ class EmailController extends Controller
                     $query->orderBy($column, $order);
 
                 })
-                ->addColumn('role_id', function ($user) {
-                    return $user->role->name;
+                ->addColumn('name', function ($user) {
+                    return $user->creator->first_name." ".$user->creator->last_name;
                 })
                 ->addColumn('created_at', function ($user) {
-                    return $user->created_at;
+                    return $user->created_at->toFormattedDateString();
                 })
                 ->addColumn('updated_at', function ($user) {
                     return $user->updated_at->toFormattedDateString();
@@ -120,7 +124,7 @@ class EmailController extends Controller
                     }
                     return $links;
                 })
-                ->rawColumns(['first_name', 'action'])
+                ->rawColumns(['body','name', 'first_name', 'action'])
                 ->toJson();
 
         }
@@ -135,20 +139,8 @@ class EmailController extends Controller
 
     public function edit($id)
     {
-        $admin=new Admin();
-        $adminVar=$admin->getTableColumns('admins');
-        $adminVar=['first_name','last_name','email','avatar','mobile','time_unit'];
-        foreach ($adminVar as $key=>$column){
-            $adminVar[$key]="{".$column."} ";
-        }
-
-        $customer = new Customer();
-        $customerVar=$customer->getTableColumns('customers');
-        $customerVar=['first_name','last_name','email','avatar','mobile','time_unit'];
-        foreach ($customerVar as $key=>$column){
-            $customerVar[$key]="{".$column."} ";
-        }
-
+        $adminVar=['{first_name},','{last_name},','{email},','{avatar},','{mobile},','{time_unit}'];
+        $customerVar=['{first_name},','{last_name},','{email','{avatar},','{mobile},','{time_unit}'];
         $template = EmailTemplate::find($id);
 
         if (!$template) {
@@ -176,19 +168,11 @@ class EmailController extends Controller
      */
     public function create()
     {
-        $admin=new Admin();
-        $adminVar=$admin->getTableColumns('admins');
-        $adminVar=['first_name','last_name','email','avatar','mobile','time_unit'];
-        foreach ($adminVar as $key=>$column){
-            $adminVar[$key]="{".$column."} ";
-        }
+        $adminVar=['{first_name},','{last_name},','{email},','{avatar},','{mobile},','{time_unit}'];
 
-        $customer = new Customer();
-        $customerVar=$customer->getTableColumns('customers');
-        $customerVar=['first_name','last_name','email','avatar','mobile','time_unit'];
-        foreach ($customerVar as $key=>$column){
-            $customerVar[$key]="{".$column."} ";
-        }
+
+        $customerVar=['{first_name},','{last_name},','{email','{avatar},','{mobile},','{time_unit}'];
+
 
         return view('admin.email_template.create_template', [
             'title' => 'Admin | Create Email',
@@ -213,8 +197,14 @@ class EmailController extends Controller
         $template->body = $request->body;
         $template->role_id = 1;
         $template->created_by=Auth::user()->id;
-        if ($template->save())
-            return response()->json(['status' => 'success', 'message' => 'Template created successfully!', 'refresh'=>true], 200);
+        if ($template->save()) {
+            $role = Role::where('nickname', 'superadmin')->first();
+            $superadmins = Admin::where('role_id', $role->id)->where('id', '!=', auth()->user()->id)->get();
+
+            Notification::send(Auth::user(), new EmailTemplateCreated($template, auth()->user(), 'self-notify'));
+            Notification::send($superadmins, new EmailTemplateCreated($template, auth()->user(), 'all-notify'));
+            return response()->json(['status' => 'success', 'message' => 'Template created successfully!', 'refresh' => true], 200);
+        }
         return response()->json(['status' => 'error', 'message' => 'Failed to create template!'], 500);
     }
 
@@ -250,11 +240,15 @@ class EmailController extends Controller
         if ($template) {
             $template->body = $request->body;
             $template->role_id = $request->role_id;
-            $template->save();
-               return response()->json(['status' => 'success', 'message' => 'Template updated successfully!','refresh'=>true], 200);
+            if($template->save()) {
+                $role = Role::where( 'nickname', 'superadmin' )->first();
+                $superadmins = Admin::where('role_id', $role->id)->where('id', '!=', auth()->user()->id)->get();
 
+                Notification::send( Auth::user(), new EmailTemplateUpdated( $template, auth()->user(), 'self-notify' ));
+                Notification::send( $superadmins, new EmailTemplateUpdated( $template, auth()->user(), 'all-notify' ));
+                return response()->json(['status' => 'success', 'message' => 'Template updated successfully!', 'refresh' => true], 200);
+            }
         }
-        return response()->json(['status' => 'error', 'message' => 'Error while updating template'], 200);
         return response()->json(['status' => 'error', 'message' => 'Error while updating template'], 200);
     }
 
@@ -271,6 +265,11 @@ class EmailController extends Controller
             return response()->json( ['status' => 'error', 'message' => 'Template does not exist!'], 500);
         }
         if( $emailTemplate->delete() ){
+            $role = Role::where( 'nickname', 'superadmin' )->first();
+            $superadmins = Admin::where('role_id', $role->id)->where('id', '!=', auth()->user()->id)->get();
+
+            Notification::send( Auth::user(), new EmailTemplateDeleted( $emailTemplate, auth()->user(), 'self-notify' ));
+            Notification::send( $superadmins, new EmailTemplateDeleted( $emailTemplate, auth()->user(), 'all-notify' ));
             return response()->json( ['status' => 'success', 'message' => 'Template deleted successfully!', 'refresh' => true], 200);
         }
 

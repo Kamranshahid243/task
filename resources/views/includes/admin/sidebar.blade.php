@@ -50,19 +50,6 @@
                     <li class="{{ $child == 'profile_reset_password' ? 'active' : '' }}"><a href="{{ url('/admin/password') }}"><i class="fa fa-circle-o"></i> Reset Password</a></li>
                 </ul>
             </li>
-{{--            <li class="treeview {{ $page == 'profile' ? 'active' : '' }}">--}}
-{{--                <a href="#">--}}
-{{--                    <i class="fa fa-user"></i>--}}
-{{--                    <span>Ad Management</span>--}}
-{{--                    <span class="pull-right-container">--}}
-{{--              <i class="fa fa-angle-left pull-right"></i>--}}
-{{--            </span>--}}
-{{--                </a>--}}
-{{--                <ul class="treeview-menu">--}}
-{{--                    <li class="{{ $child == 'profile_update' ? 'active' : '' }}"><a href="{{ url('/admin/ad-categories') }}"><i class="fa fa-circle-o"></i>Categories</a></li>--}}
-{{--                    <li class="{{ $child == 'profile_reset_password' ? 'active' : '' }}"><a href="{{ url('/admin/ad-sub-categories') }}"><i class="fa fa-circle-o"></i>Sub Categories</a></li>--}}
-{{--                </ul>--}}
-{{--            </li>--}}
             <li class="{{ $page == 'security' ? 'active' : '' }}">
                 <a href="{{ url('/admin/security/settings') }}">
                     <i class="fa fa-shield"></i> <span>Security Management</span>
@@ -99,21 +86,21 @@
                     <i class="fa fa-square-o"></i> <span>Subcategories Management</span>
                 </a>
             </li>
-            <li class="{{ $page == 'subcategory-list' ? 'active' : '' }}">
+            <li class="{{ $page == 'subcategory-metadata-list' ? 'active' : '' }}">
                 <a href="{{ url('/admin/subcategories/metadata') }}">
-                    <i class="fa fa-square-o"></i> <span>Subcategories Metadata</span>
+                    <i class="fa fa-database"></i> <span>Subcategories Metadata</span>
                 </a>
             </li>
-            <li class="treeview {{ $page == 'profile' ? 'active' : '' }}">
+            <li class="treeview {{ $page == 'ads-list' ? 'active' : '' }}">
                 <a href="#">
-                    <i class="fa fa-user"></i>
+                    <i class="fa fa-bullhorn"></i>
                     <span>Ad Management</span>
                     <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li class="{{ $page == 'ads-list' ? 'active' : '' }}">
+                    <li class="{{ $child == 'ads-list' ? 'active' : '' }}">
                         <a href="{{ url('/admin/ads') }}">
                             <i class="fa fa-square-o"></i> <span>Create Ad</span>
                         </a>
@@ -121,6 +108,9 @@
                     <li class="{{ $child == 'profile_reset_password' ? 'active' : '' }}"><a href="{{ url('/admin/ads-metadata') }}"><i class="fa fa-circle-o"></i> Ad Metadata</a></li>
                 </ul>
             </li>
+
+{{--            Reports--}}
+
             <li class="{{ $page == 'plan-list' ? 'active' : '' }}">
                 <a href="{{ url('/admin/plans/management') }}">
                     <i class="fa fa-newspaper-o"></i> <span>Plans Management</span>
@@ -130,6 +120,43 @@
                 <a href="{{ url('/admin/faqs/management') }}">
                     <i class="fa  fa-question-circle"></i> <span>FAQs Management</span>
                 </a>
+            </li> <li class="{{ $page == 'faqs-list' ? 'active' : '' }}">
+                <a href="{{ url('/admin/terms') }}">
+                    <i class="fa  fa-file-text"></i> <span>Terms</span>
+                </a>
+            </li>
+            <li class="treeview {{ $page == 'reports' ? 'active' : '' }}">
+                <a href="#">
+                    <i class="fa fa-bar-chart-o"></i>
+                    <span>Reports</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ $child == 'blocked-users-list' ? 'active' : '' }}">
+                        <a href="{{ url('/admin/blocked-users') }}">
+                            <i class="fa fa-square-o"></i> <span>Blocked Users</span>
+                        </a>
+                    </li>
+                    <li class="{{ $child == 'active-users-list' ? 'active' : '' }}"><a href="{{ url('/admin/active-users') }}"><i class="fa fa-circle-o"></i> Active Users</a></li>
+
+                    <li class="{{ $child == 'blocked-customers-list' ? 'active' : '' }}"><a href="{{ url('/admin/blocked-customers') }}"><i class="fa fa-circle-o"></i> Blocked Customers</a></li>
+
+                    <li class="{{ $child == 'active-customers-list' ? 'active' : '' }}"><a href="{{ url('/admin/active-customers') }}"><i class="fa fa-circle-o"></i> Active Customers</a></li>
+                </ul>
+            </li>
+            <li class="treeview {{ $page == 'settings' ? 'active' : '' }}">
+                <a href="#">
+                    <i class="fa fa-gear"></i>
+                    <span>Settings</span>
+                    <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="{{ $child == 'field-settings' ? 'active' : '' }}"><a href="{{ url('/admin/registration-setting') }}"><i class="fa fa-circle-o"></i>Registration Fields</a></li>
+                </ul>
             </li>
 
         </ul>

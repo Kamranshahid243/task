@@ -29,8 +29,7 @@
         <div class="col-md-12">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Ad Categories</h3>
-                    <a href="{{ url('/admin/ad-categories/create') }}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>  <span>Create Account</span></a>
+                    <h3 class="box-title">Blocked Customers</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">

@@ -21,21 +21,21 @@
         <section class="content-header">
             <h1></h1>
         </section>
-
-        <!-- Main content -->
         <section class="content">
-
-
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Create Account</h3>
+                    <h3 class="box-title">Update Email Template</h3>
                 </div>
-                <!-- /.box-header -->
-                <!-- form start -->
                 <form class="form-verticle form" method="post" action="{{ url('/admin/email-templates/'.$data->id) }}">
                     @csrf
                     @method('PUT')
                     <div class="box-body">
+                        <div class="callout callout-warning" style="background: #F7F7F7 !important;">
+                            <div class="text-danger">
+                                <h4>Are you writing a contract?</h4>
+                                <p>Just copy the placeholder of your choice from the following and paste them on the text editor including curly braces. <br>These placeholders will be replaced with their actual values.</p>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -60,28 +60,23 @@
                                     @if(isset($adminVar))
                                         <ul id="adminVariable" style="display: none">
                                             @foreach($adminVar as $var)
-                                                <li>{{$var}},</li>
+                                                <li>{{$var}}</li>
                                             @endforeach
                                         </ul>
                                     @endif
                                     @if(isset($customerVar))
                                         <ul id="customerVariable" style="display: none">
                                             @foreach($customerVar as $var)
-                                                <li>{{$var}},</li>
+                                                <li>{{$var}}</li>
                                             @endforeach
                                         </ul>
                                     @endif
                                     <div class="clearfix"></div>
 
                                     <label>Body<span class="text-red">*</span></label>
-                                    <textarea name="body" id="editor1" rows="10" cols="80">
+                                    <textarea name="body" id="templateBody" rows="10" cols="80">
                                         {{$data->body}}
                                 </textarea>
-                                    <script>
-                                        // Replace the <textarea id="editor1"> with a CKEditor
-                                        // instance, using default configuration.
-                                        CKEDITOR.replace('editor1');
-                                    </script>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +84,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary pull-right form-btn"><i class="fa fa-check"></i>
-                            Update
+                            Save Changes
                         </button>
                     </div>
                     <!-- /.box-footer -->
@@ -101,20 +96,26 @@
         <!-- /.content -->
     </div>
     <style>
-        ul li {
-            float: left;
-            margin-left: 1em;
+        #adminVariable,#customerVariable {
+            margin-left: -3.3%;
+            list-style: none;
+        }
+        #adminVariable  li{
             color: red;
+            display: inline;
+            margin-right: 1em;
         }
 
-        ul {
-            list-style: none;
+        #customerVariable  li{
+            color: red;
+            display: inline;
         }
     </style>
 @endsection
 
 @section('scripts')
     <script>
+        CKEDITOR.replace('templateBody');
         var adminVar = document.getElementById('adminVariable');
         var customerVar = document.getElementById('customerVariable');
         var role_id = document.getElementById('role_id');

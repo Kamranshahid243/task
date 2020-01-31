@@ -37,10 +37,12 @@
                 <form class="form-verticle form-with-attachment" method="post" action="{{ url('/admin/subcategories/management') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="box-body">
-                        <div class="form-group">
+                        <div class="form-group" id="test">
+                            <img src="#" class="thumb-square-50x50" alt="" id="subCategoryImage" style="display: none">
                             <label for="exampleInputFile">Thumbnail<span class="text-red">*</span></label>
-                            <input type="file" class="auc-thumbnail" name="thumbnail">
+                            <input type="file" multiple class="auc-thumbnail" id="inputCategory" name="thumbnail">
                             <br>
+
                             <span><em>Valid thumbnail types are .jpg, jpeg, .png, .webp, .svg and .gif</em></span>
                         </div>
                         <div class="form-group">
@@ -65,9 +67,9 @@
                             <label>Status<span class="text-red">*</span></label>
                             <select class="form-control select2" name="status">
                                 <option value="1">Play</option>
-                                <option value="0">Pause</option>
+                                <option value="0">Hide</option>
                             </select>
-                            <span><em>The Pause status hides the category from website and play does the opposite.</em></span>
+                            <span><em>The Hide status hides the category from website and play does the opposite.</em></span>
                         </div>
 
                     </div>
@@ -107,9 +109,9 @@
                                     <td>{{ $subcategory->category['name'] }}</td>
                                     <td>
                                         @if( $subcategory->is_paused == 1)
-                                        <span class="label label-danger">Pause</span>
+                                        <span class="label label-danger">Hide</span>
                                         @else
-                                        <span class="label label-success">Play</span>
+                                        <span class="label label-success">Show</span>
                                         @endif
                                     </td>
                                     <td>{!! ( $subcategory->created_by ) ? '<a href="'.url('/admin/users/management/'.$subcategory->creator->id).'">'.$subcategory->creator->first_name.' '.$subcategory->creator->last_name.'</a>' : 'n/a' !!}</td>
@@ -201,7 +203,7 @@
                     <h4 class="modal-title">Confirmation!</h4>
                 </div>
                 <div class="modal-body">
-                   <p><strong>Do you really want to play this record?</strong></p>
+                   <p><strong>Do you really want to show this record?</strong></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -232,6 +234,25 @@
 <script>
   $(document).ready(function () {
     $('.sidebar-menu').tree()
+  })
+  $(document).ready(function () {
+      $('.sidebar-menu').tree();
+      function readURL(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function(e) {
+                  $('#subCategoryImage').attr('src', e.target.result);
+              };
+
+              reader.readAsDataURL(input.files[0]);
+              $('#subCategoryImage').css('display', "block");
+
+          }
+      }
+      $("#inputCategory").change(function() {
+          readURL(this);
+      });
   })
 </script>
 @endsection

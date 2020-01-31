@@ -35,7 +35,7 @@ body{ font-family: 'Open Sans', sans-serif; }
 .swal2-container{
     top:60px !important;
     position:relative;
-    
+
 }
 .swal2-container .swal2-popup{ padding:10px !important; }
 .swal2-container *{
@@ -55,8 +55,8 @@ body{ font-family: 'Open Sans', sans-serif; }
 
 .text-center{ text-align:center; }
 
-.select2{ 
-    width:100% !important; 
+.select2{
+    width:100% !important;
     height:34px;
 }
 
@@ -78,7 +78,7 @@ body{ font-family: 'Open Sans', sans-serif; }
 }
 .auc-table-with-thumbs .table-avatar .avatar{ margin-right:10px; }
 .custom-table {
-    
+
 }
 #data-table td,
 .custom-table td{
@@ -88,7 +88,7 @@ body{ font-family: 'Open Sans', sans-serif; }
 .timeline-inverse>li>.timeline-item {
     background: #f0f0f040;
     border: 1px solid #dddddd5e;
-   
+
 }
 
 
@@ -98,7 +98,14 @@ body{ font-family: 'Open Sans', sans-serif; }
 }
 
 .select2-container--default .select2-selection--multiple .select2-selection__choice__remove { color: rgb(255, 255, 255); }
-   
+
 .auc-thumb-wrapper{
     margin-bottom:30px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+
+    padding: 0;
+    margin: 0;
+
 }

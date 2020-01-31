@@ -28,13 +28,20 @@
 
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Create Account</h3>
+                    <h3 class="box-title">Create Email Template</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
                 <form class="form-verticle form" method="post" action="{{ url('/admin/email-templates') }}">
                     @csrf
-                    <div class="box-body">
+                    <div class="box-body"> <label>Description</label>
+                        <div class="callout callout-warning" style="background: #F7F7F7 !important;">
+                            <div class="text-danger">
+                                <h4>Are you writing a contract?</h4>
+                                <p>Just copy the placeholder of your choice from the following and paste them on the text editor including curly braces. <br>These placeholders will be replaced with their actual values.</p>
+
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -55,55 +62,43 @@
                                     @if(isset($adminVar))
                                         <ul id="adminVariable" style="">
                                             @foreach($adminVar as $var)
-                                                <li style="">{{$var}},</li>
+                                                <li style="">{{$var}}</li>
                                             @endforeach
                                         </ul>
                                     @endif
                                     @if(isset($customerVar))
                                         <ul id="customerVariable" style="display: none">
                                             @foreach($customerVar as $var)
-                                                <li>{{$var}},</li>
+                                                <li>{{$var}}</li>
                                             @endforeach
                                         </ul>
                                     @endif
                                     <div class="clearfix"></div>
                                     <label>Body<span class="text-red">*</span></label>
-                                    <textarea name="body" id="editor1" rows="10" cols="80">
+                                    <textarea name="body" id="emailTemplateBody" rows="10" cols="80">
                                 </textarea>
-                                    <script>
-                                        // Replace the <textarea id="editor1"> with a CKEditor
-                                        // instance, using default configuration.
-                                        CKEDITOR.replace('editor1');
-                                    </script>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- /.box-body -->
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary pull-right form-btn"><i class="fa fa-check"></i>
                             Create
                         </button>
                     </div>
-                    <!-- /.box-footer -->
                 </form>
             </div>
-
-
         </section>
-        <!-- /.content -->
     </div>
     <style>
-        #adminVariable {
-            margin-left: -5%;
-            list-style: none;
-        } #customerVariable {
-            margin-left: -5%;
+        #adminVariable,#customerVariable {
+            margin-left: -3.3%;
             list-style: none;
         }
         #adminVariable  li{
             color: red;
             display: inline;
+            margin-right: 1em;
         }
 
         #customerVariable  li{
@@ -115,6 +110,7 @@
 
 @section('scripts')
     <script>
+        CKEDITOR.replace('emailTemplateBody');
         var adminVar = document.getElementById('adminVariable');
         var customerVar = document.getElementById('customerVariable');
         var role_id = document.getElementById('role_id');

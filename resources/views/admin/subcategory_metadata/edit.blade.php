@@ -29,11 +29,11 @@
         <div class="col-md-4">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Edit Subcategory</h3>
+                    <h3 class="box-title">Edit Subcategory Metadata</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-verticle" method="post" action="{{ url('/admin/subcategories/metadata/'.$found->id) }}">
+                <form class="form-verticle form" method="post" action="{{ url('/admin/subcategories/metadata/'.$found->id) }}">
                     @method('put')
                     @csrf
                     <div class="box-body">
@@ -73,7 +73,7 @@
                     <!-- /.box-body -->
                     <div class="box-footer">
 
-                        <button type="submit" class="btn btn-primary pull-right form-btn"><i class="fa fa-check"></i> Create</button>
+                        <button type="submit" class="btn btn-primary pull-right form-btn"><i class="fa fa-check"></i> Save Changes</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>
@@ -82,7 +82,7 @@
         <div class="col-md-8">
             <div class="box box-primary ">
                 <div class="box-header with-border">
-                    <h3 class="box-title">View All Subcategories</h3>
+                    <h3 class="box-title">View All Subcategories Metadata</h3>
                 </div>
                 <div class="box-body">
                     <table id="data-table" class="table table-bordered table-striped">
@@ -101,9 +101,9 @@
                             @foreach( $subcategories_metadata as $subcategory_meta )
                                 <tr>
                                     <td>{{ $subcategory_meta->key }}</td>
-                                    <td>{{ $subcategory_meta->category['name'] }}</td>
-                                    <td>{{ $subcategory_meta->subCategory['name'] }}</td>
-                                    <td>{{$subcategory_meta->creator['first_name']}}</td>
+                                    <td>{{ $subcategory_meta->category->name }}</td>
+                                    <td>{{ $subcategory_meta->subCategory->name }}</td>
+                                    <td>{{$subcategory_meta->creator->first_name.' '.$subcategory_meta->creator->last_name}}</td>
                                     <td>{{ ( $subcategory_meta->created_at ) ? $subcategory_meta->created_at->toFormattedDateString() : 'n/a' }}</td>
                                     <td>
                                         <a href="{{ url('/admin/subcategories/metadata/'.$subcategory_meta->id.'/edit') }}"  title="Edit" data-action="edit" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $title) 
+@section('title', $title)
 
 
 @section('style-sheets')
@@ -43,8 +43,9 @@
                             </div>
                         @endif
                         <div class="form-group">
+                            <img src="#" class="thumb-square-50x50" alt="" id="subCategoryImage" style="display: none">
                             <label for="exampleInputFile">Thumbnail<span class="text-red">*</span></label>
-                            <input type="file" class="auc-thumbnail" name="thumbnail">
+                            <input type="file" class="auc-thumbnail" name="thumbnail" id="inputCategory">
                             <br>
                             <span><em>Valid thumbnail types are .jpg, jpeg, .png, .webp, .svg and .gif</em></span>
                         </div>
@@ -62,9 +63,9 @@
                                 @if( $categories->count() )
                                     @foreach( $categories as $category)
                                         @if( $category->id == $found->category_id )
-                                        <option value="{{ $category->id }}" selected>{{ $category->name }}</option>  
+                                        <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
                                         @else
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>  
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endif
                                     @endforeach
                                 @endif
@@ -74,25 +75,25 @@
                             <label>Status<span class="text-red">*</span></label>
                             <select class="form-control select2" name="status">
                                 @if( $found->is_paused )
-                                <option value="0">Pause</option>
-                                <option value="1">Play</option>
+                                <option value="0">Hide</option>
+                                <option value="1">Show</option>
                                 @else
-                                <option value="1">Play</option>
-                                <option value="0">Pause</option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
                                 @endif
                             </select>
-                            <span><em>The Pause status hides the category from website and play does the opposite.</em></span>
+                            <span><em>The Hide status hides the category from website and Show does the opposite.</em></span>
                         </div>
-                      
+
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                   
+
                         <button type="submit" class="btn btn-primary pull-right form-btn"><i class="fa fa-check"></i> Save Changes</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>
-            </div>            
+            </div>
         </div>
         <div class="col-md-8">
             <div class="box box-primary ">
@@ -109,7 +110,7 @@
                                 <th>Status</th>
                                 <th>Created By</th>
                                 <th>Created At</th>
-                                <th>Action<s/th>    
+                                <th>Action<s/th>
                             </tr>
                         </thead>
 					<tbody>
@@ -121,27 +122,27 @@
                                     <td>{{ $subcategory->category->name }}</td>
                                     <td>
                                         @if( $subcategory->is_paused == 1)
-                                        <span class="label label-danger">Pause</span>
+                                        <span class="label label-danger">Hide</span>
                                         @else
-                                        <span class="label label-success">Play</span>
+                                        <span class="label label-success">Show</span>
                                         @endif
                                     </td>
                                     <td>{!! ( $subcategory->created_by ) ? '<a href="'.url('/admin/users/management/'.$subcategory->creator->id).'">'.$subcategory->creator->first_name.' '.$subcategory->creator->last_name.'</a>' : 'n/a' !!}</td>
                                     <td>{{ ( $subcategory->created_at ) ? $subcategory->created_at->toFormattedDateString() : 'n/a' }}</td>
                                     <td>
-                                        <a href="{{ url('/admin/subcategories/management/'.$subcategory->id.'/edit') }}"  title="Edit" data-action="edit" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a> 
+                                        <a href="{{ url('/admin/subcategories/management/'.$subcategory->id.'/edit') }}"  title="Edit" data-action="edit" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
                                         <a href="#" data-type="admin" data-id="{{ $subcategory->id }}" data-url="/admin/subcategories/management/{{$subcategory->id}}"  title="Delete"data-action="delete" class="custom-table-btn btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
-                                       
+
                                     </td>
                                 </tr>
                             @endforeach
                         @endif
-                        
+
                     </tbody>
-                
+
 				</table>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 
@@ -215,7 +216,7 @@
                     <h4 class="modal-title">Confirmation!</h4>
                 </div>
                 <div class="modal-body">
-                   <p><strong>Do you really want to play this record?</strong></p>
+                   <p><strong>Do you really want to show this record?</strong></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
@@ -246,6 +247,22 @@
 <script>
   $(document).ready(function () {
     $('.sidebar-menu').tree()
+      function readURL(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function(e) {
+                  $('#subCategoryImage').attr('src', e.target.result);
+              };
+
+              reader.readAsDataURL(input.files[0]);
+              $('#subCategoryImage').css('display', "block");
+
+          }
+      }
+      $("#inputCategory").change(function() {
+          readURL(this);
+      });
   })
 </script>
 @endsection

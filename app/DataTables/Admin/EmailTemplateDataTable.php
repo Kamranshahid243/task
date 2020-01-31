@@ -33,8 +33,8 @@ class EmailTemplateDataTable extends DataTable
             return 'N/A';
 
         })
-        ->addColumn('role_id', function( $query ){
-            return $query->role->name;
+        ->addColumn('name', function( $query ){
+            return $query->creator->first_name." ".$query->creator->last_name;
         })
         ->addColumn('created_at', function( $query ){
             if( $query->created_at ){
@@ -56,7 +56,7 @@ class EmailTemplateDataTable extends DataTable
 
             return $links;
         })
-        ->rawColumns(['id','body', 'role_id', 'created_at', 'action']);
+        ->rawColumns(['id','body', 'name', 'created_at', 'action']);
     }
 
     /**
@@ -81,7 +81,7 @@ class EmailTemplateDataTable extends DataTable
 
             ->addColumn([ 'data' => 'id', 'title' => 'ID' ])
             ->addColumn([ 'data' => 'body',  'title' => 'Body' ])
-            ->addColumn([ 'data' => 'role_id','title' => 'Role' ])
+            ->addColumn([ 'data' => 'name','title' => 'Created By' ])
             ->addColumn([ 'data' => 'created_at',  'title' => 'Created At' ])
             ->minifiedAjax()
             ->addAction(['width' => '140px'])

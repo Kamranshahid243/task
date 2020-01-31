@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $title) 
+@section('title', $title)
 
 
 @section('style-sheets')
@@ -33,12 +33,13 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form class="form-verticle form-with-attachment" method="post" action="{{ url('/admin/categories/management') }}" enctype="multipart/form-data">
+                <form class="form-verticle form-with-attachment" method="post" action="{{ url('/admin/categories/management') }}" enctype="multipart/form-data" data-ajax='false'>
                     @csrf
                     <div class="box-body">
                         <div class="form-group">
+                            <img src="#" class="thumb-square-50x50" alt="" id="categoryImage" style="display: none">
                             <label for="exampleInputFile">Thumbnail<span class="text-red">*</span></label>
-                            <input type="file" class="auc-thumbnail" name="thumbnail">
+                            <input type="file" id="inputCategory" class="auc-thumbnail" name="thumbnail">
                             <br>
                             <span><em>Valid thumbnail types are .jpg, jpeg, .png, .webp, .svg and .gif</em></span>
                         </div>
@@ -53,21 +54,21 @@
                         <div class="form-group">
                             <label>Status<span class="text-red">*</span></label>
                             <select class="form-control select2" name="status">
-                                <option value="1">Play</option>
-                                <option value="0">Pause</option>
+                                <option value="1">Show</option>
+                                <option value="0">Hide</option>
                             </select>
-                            <span><em>The Pause status hides the category from website and play does the opposite.</em></span>
+                            <span><em>The Hide status hides the category from website and Show does the opposite.</em></span>
                         </div>
-                      
+
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                   
+
                         <button type="submit" class="btn btn-primary pull-right form-btn"><i class="fa fa-check"></i> Create</button>
                     </div>
                     <!-- /.box-footer -->
                 </form>
-            </div>            
+            </div>
         </div>
         <div class="col-md-8">
             <div class="box box-primary ">
@@ -83,7 +84,7 @@
                                 <th>Status</th>
                                 <th>Created By</th>
                                 <th>Created At</th>
-                                <th>Action<s/th>    
+                                <th>Action<s/th>
                             </tr>
                         </thead>
 					<tbody>
@@ -94,27 +95,27 @@
                                     <td>{{ $category->name }}</td>
                                     <td>
                                         @if( $category->is_paused == 1)
-                                        <span class="label label-danger">Pause</span>
+                                        <span class="label label-danger">Hide</span>
                                         @else
-                                        <span class="label label-success">Play</span>
+                                        <span class="label label-success">Show</span>
                                         @endif
                                     </td>
                                     <td>{!! ( $category->created_by ) ? '<a href="'.url('/admin/users/management/'.$category->creator->id).'">'.$category->creator->first_name.' '.$category->creator->last_name.'</a>' : 'n/a' !!}</td>
                                     <td>{{ ( $category->created_at ) ? $category->created_at->toFormattedDateString() : 'n/a' }}</td>
                                     <td>
-                                        <a href="{{ url('/admin/categories/management/'.$category->id.'/edit') }}"  title="Edit" data-action="edit" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a> 
+                                        <a href="{{ url('/admin/categories/management/'.$category->id.'/edit') }}"  title="Edit" data-action="edit" class="btn btn-xs btn-default"><i class="fa fa-edit"></i></a>
                                         <a href="#" data-type="admin" data-id="{{ $category->id }}" data-url="/admin/categories/management/{{$category->id}}"  title="Delete"data-action="delete" class="custom-table-btn btn btn-xs btn-default"><i class="fa fa-trash-o"></i></a>
-                                       
+
                                     </td>
                                 </tr>
                             @endforeach
                         @endif
-                        
+
                     </tbody>
-                
+
 				</table>
                 </div>
-            </div>            
+            </div>
         </div>
     </div>
 
@@ -218,7 +219,23 @@
 <script src="{{ asset('/assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
 <script>
   $(document).ready(function () {
-    $('.sidebar-menu').tree()
+    $('.sidebar-menu').tree();
+      function readURL(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function(e) {
+                  $('#categoryImage').attr('src', e.target.result);
+              };
+
+              reader.readAsDataURL(input.files[0]);
+              $('#categoryImage').css('display', "block");
+
+          }
+      }
+      $("#inputCategory").change(function() {
+          readURL(this);
+      });
   })
 </script>
 @endsection

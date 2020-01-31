@@ -10,7 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::prefix('admin')->namespace('Auth')->group(function () {
 
     // Authentication Routes...
@@ -42,6 +41,8 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 
     //    Category Management
     Route::resource('/ad-sub-categories','AdSubCategoryController');
+    Route::resource('/terms','TermController');
+    Route::resource('/registration-setting','RegistrationFieldSettingController');
 
     // Package routes
     Route::resource('/packages', 'PackageController');
@@ -159,6 +160,13 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     Route::resource('/categories/management', 'CategoryController');
     Route::post('/categories/management/pause/{id}', 'CategoryController@pause');
     Route::post('/categories/management/play/{id}', 'CategoryController@play');
+
+
+//    reports
+    Route::resource('/blocked-users','BlockedUsersController');
+    Route::resource('/active-users','ActiveUsersController');
+    Route::resource('/blocked-customers','BlockedCustomersController');
+    Route::resource('/active-customers','ActiveCustomersController');
 
     //Ads
     Route::get('/ads/subcat-metadata','AdsController@SubCatDetails')->name('adDetails');

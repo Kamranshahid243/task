@@ -25,12 +25,12 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         return view('admin.categories.list', [
-            'title'     => 'Admin | Categories Management', 
-            'page'      => 'category-list', 
-            'child'     => '', 
-            'categories'  => Category::all(), 
+            'title'     => 'Admin | Categories Management',
+            'page'      => 'category-list',
+            'child'     => '',
+            'categories'  => Category::all(),
             'bodyClass' => $this->bodyClass
         ]);
     }
@@ -42,7 +42,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -53,15 +53,15 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        return $request;
 
         request()->validate([
             'name' => 'required|max:255',
             'description' => 'required',
             'status' => 'required|boolean',
-            
         ]);
 
-       
+
         if( !request()->has('attachments-0') ){
             return response()->json([
                 'status' => 'error',
@@ -84,13 +84,13 @@ class CategoryController extends Controller
         $category->created_by   = auth()->user()->id;
 
         if( $category->save() ){
-            
+
 
             $role = Role::where( 'nickname', 'superadmin' )->first();
             $superadmins = Admin::where('role_id', $role->id)->where('id', '!=', auth()->user()->id)->get();
-
-            Notification::send( Auth::user(), new NewCategoryAdded(  $category, auth()->user(), 'self-notify' ));
-            Notification::send( $superadmins, new NewCategoryAdded(  $category, auth()->user(), 'all-notify' )); 
+//
+//            Notification::send( Auth::user(), new NewCategoryAdded(  $category, auth()->user(), 'self-notify' ));
+//            Notification::send( $superadmins, new NewCategoryAdded(  $category, auth()->user(), 'all-notify' ));
 
             return response()->json([
                 'status' => 'success',
@@ -132,11 +132,11 @@ class CategoryController extends Controller
         }
 
         return view('admin.categories.edit', [
-            'title'     => 'Admin | Categories Management', 
-            'page'      => 'category-list', 
+            'title'     => 'Admin | Categories Management',
+            'page'      => 'category-list',
             'child'     => '',
-            'found'     => $category,  
-            'categories'  => Category::all(), 
+            'found'     => $category,
+            'categories'  => Category::all(),
             'bodyClass' => $this->bodyClass
         ]);
     }
@@ -155,11 +155,11 @@ class CategoryController extends Controller
             'name' => 'required|max:255',
             'description' => 'required',
             'status' => 'required|boolean',
-            
+
         ]);
 
 
-       
+
         $category = Category::find( $id );
 
         if( !$category ){
@@ -186,15 +186,15 @@ class CategoryController extends Controller
         $category->description  = request()->description;
         $category->is_paused    = (request()->status == "1") ? false : true;
 
-        
+
         if( $category->save() ){
-            
+
 
             $role = Role::where( 'nickname', 'superadmin' )->first();
             $superadmins = Admin::where('role_id', $role->id)->where('id', '!=', auth()->user()->id)->get();
 
             Notification::send( Auth::user(), new CategoryUpdated(  $category, auth()->user(), 'self-notify' ));
-            Notification::send( $superadmins, new CategoryUpdated(  $category, auth()->user(), 'all-notify' )); 
+            Notification::send( $superadmins, new CategoryUpdated(  $category, auth()->user(), 'all-notify' ));
 
             return response()->json([
                 'status' => 'success',
@@ -222,8 +222,8 @@ class CategoryController extends Controller
 
         $thumb = $category->thumbnail ? str_replace('public/', 'storage/', $category->thumbnail) : null;
         if( $category->delete() ){
-            
-            
+
+
 
             if( $thumb ) {
                 Storage::delete( $thumb );
@@ -233,7 +233,7 @@ class CategoryController extends Controller
             $superadmins = Admin::where('role_id', $role->id)->where('id', '!=', auth()->user()->id)->get();
 
             Notification::send( Auth::user(), new CategoryDeleted(  $category, auth()->user(), 'self-notify' ));
-            Notification::send( $superadmins, new CategoryDeleted(  $category, auth()->user(), 'all-notify' )); 
+            Notification::send( $superadmins, new CategoryDeleted(  $category, auth()->user(), 'all-notify' ));
 
             return response()->json([
                 'status' => 'success',
@@ -248,5 +248,5 @@ class CategoryController extends Controller
         ], 500);
     }
 
-  
+
 }
