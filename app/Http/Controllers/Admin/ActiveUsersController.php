@@ -77,17 +77,6 @@ class ActiveUsersController extends Controller
                 })
                 ->addColumn('action', function( $query ){
                     $links  = '<a href="'. url('/admin/users/management/'.$query->id) .'" data-toggle="tooltip" data-placement="top" title="View" data-action="view" class="btn btn-xs btn-default" data-original-title="Edit"><i class="fa fa-eye"></i></a>';
-                    if( $query->is_blocked ){
-                        $links .= ' <a href="#" data-id="'.$query->id.'" data-url="/admin/users/management/'.$query->id.'/unblock" data-toggle="tooltip" data-placement="top" title="Unblock" data-action="unblock" class="custom-table-btn btn btn-xs btn-default" data-original-title="Unblock"><i class="fa fa-check"></i></a>';
-                    }
-                    else{
-                        $links .= ' <a href="#" data-id="'.$query->id.'" data-url="/admin/users/management/'.$query->id.'/block" data-toggle="tooltip" data-placement="top" title="Block" data-action="block" class="custom-table-btn btn btn-xs btn-default" data-original-title="Block"><i class="fa fa-ban"></i></a>';
-                    }
-
-                    return $links;
-                })
-                ->addColumn('action', function( $query ){
-                    $links  = '<a href="'. url('/admin/users/management/'.$query->id) .'" data-toggle="tooltip" data-placement="top" title="View" data-action="view" class="btn btn-xs btn-default" data-original-title="Edit"><i class="fa fa-eye"></i></a>';
                     $links .= ' <a href="'. url('/admin/users/management/'.$query->id.'/edit') .'" data-toggle="tooltip" data-placement="top" title="Edit" data-action="edit" class="btn btn-xs btn-default" data-original-title="Edit"><i class="fa fa-edit"></i></a>';
                     $links .= ' <a href="#" data-id="'.$query->id.'" data-url="/admin/users/management/'.$query->id.'" data-toggle="tooltip" data-placement="top" title="Delete" data-action="delete" class="custom-table-btn btn btn-xs btn-default" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>';
                     if( $query->is_blocked ){
@@ -163,17 +152,6 @@ class ActiveUsersController extends Controller
 
                 ->addColumn('updated_at', function( $user ){
                     return $user->updated_at->toFormattedDateString();
-                })
-                ->addColumn('action', function( $query ){
-                    $links  = '<a href="'. url('/admin/users/management/'.$query->id) .'" data-toggle="tooltip" data-placement="top" title="View" data-action="view" class="btn btn-xs btn-default" data-original-title="Edit"><i class="fa fa-eye"></i></a>';
-                    if( $query->is_blocked ){
-                        $links .= ' <a href="#" data-id="'.$query->id.'" data-url="/admin/users/management/'.$query->id.'/unblock" data-toggle="tooltip" data-placement="top" title="Unblock" data-action="unblock" class="custom-table-btn btn btn-xs btn-default" data-original-title="Unblock"><i class="fa fa-check"></i></a>';
-                    }
-                    else{
-                        $links .= ' <a href="#" data-id="'.$query->id.'" data-url="/admin/users/management/'.$query->id.'/block" data-toggle="tooltip" data-placement="top" title="Block" data-action="block" class="custom-table-btn btn btn-xs btn-default" data-original-title="Block"><i class="fa fa-ban"></i></a>';
-                    }
-
-                    return $links;
                 })
                 ->addColumn('action', function( $query ){
                     $links  = '<a href="'. url('/admin/users/management/'.$query->id) .'" data-toggle="tooltip" data-placement="top" title="View" data-action="view" class="btn btn-xs btn-default" data-original-title="Edit"><i class="fa fa-eye"></i></a>';

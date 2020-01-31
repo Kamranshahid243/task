@@ -2,55 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c5c054c3-d1ea-444e-9091-fc57ea46eefc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/DataTables/Admin/BlockedCustomersDataTable.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/DataTables/Admin/BlockedUsersDataTable.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ActiveCustomersController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ActiveUsersController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/BlockedCustomersController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/BlockedUsersController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/RegistrationFieldSettingController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/BlockedUsers.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/RegistrationFieldSetting.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Term.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Notifications/Database/Admin/EmailTemplateDeleted.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Notifications/Database/Admin/EmailTemplateUpdated.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Notifications/Database/Admin/SubCategoryMetaDataDeleted.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Notifications/Database/Admin/SubCategoryMetaDataUpdate.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/reports/blocked-customer-list.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/reports/blocked-users-list.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/admin/settings/registration_Settings/index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/DataTables/Admin/EmailTemplateDataTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/DataTables/Admin/EmailTemplateDataTable.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdCategoryController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/AdSubCategoryController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CategoryController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/EmailController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/EmailController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/SubcategoryMetadataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/SubcategoryMetadataController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Customer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/SubcategoryMetadata.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/SubcategoryMetadata.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_29_151752_create_auc_ad_subcategories_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_01_29_154414_create_auc_ad_categories_table.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/css/dashboard.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/dashboard.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ad_management/ad_category/create.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ad_management/ad_category/edit.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ad_management/ad_category/index.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ad_management/ad_category/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/reports/active-customer-list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ad_management/ad_category/show.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ad_management/ad_sub_category/create.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ad_management/ad_sub_category/edit.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ad_management/ad_sub_category/index.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ad_management/ad_sub_category/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/reports/active-users-list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/ad_management/ad_sub_category/show.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/categories/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/categories/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/categories/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/categories/list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/email_template/create_template.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/email_template/create_template.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/email_template/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/email_template/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/subcategories/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/subcategories/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/subcategories/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/subcategories/list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/subcategory_metadata/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/subcategory_metadata/edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/admin/subcategory_metadata/list.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/admin/subcategory_metadata/list.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/includes/admin/sidebar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/admin/sidebar.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ActiveUsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ActiveUsersController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/BlockedUsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/BlockedUsersController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,7 +190,7 @@
       <workItem from="1580151423982" duration="14932000" />
       <workItem from="1580191979569" duration="26419000" />
       <workItem from="1580298032272" duration="7687000" />
-      <workItem from="1580310078520" duration="107608000" />
+      <workItem from="1580310078520" duration="109057000" />
     </task>
     <servers />
   </component>
@@ -268,10 +222,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="255" y="159" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1580422344921" />
-    <state x="262" y="0" width="840" height="726" key="search.everywhere.popup" timestamp="1580479253765">
+    <state x="262" y="0" width="840" height="726" key="search.everywhere.popup" timestamp="1580480486505">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="262" y="0" width="840" height="726" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1580479253765" />
+    <state x="262" y="0" width="840" height="726" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1580480486505" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
